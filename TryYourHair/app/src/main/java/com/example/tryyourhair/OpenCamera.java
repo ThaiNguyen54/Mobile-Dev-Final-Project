@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
@@ -41,6 +44,7 @@ public class OpenCamera extends CameraActivity {
 
     CameraBridgeViewBase cameraBridgeViewBase;
     ImageView btn_taking_picture;
+    ImageView btn_cancel_take_image;
     int take_image = 0;
 
     @Override
@@ -52,6 +56,7 @@ public class OpenCamera extends CameraActivity {
 
         cameraBridgeViewBase = findViewById(R.id.camera_view);
         btn_taking_picture = findViewById(R.id.btn_take_picture);
+        btn_cancel_take_image = findViewById(R.id.btn_cancel);
         cameraBridgeViewBase.setCameraIndex(1); // Use front camera
 
         cameraBridgeViewBase.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener2() {
@@ -69,6 +74,7 @@ public class OpenCamera extends CameraActivity {
             public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
                 take_image = TakePicture(take_image, inputFrame.rgba());
                 return inputFrame.rgba();
+
             }
         });
 
@@ -88,10 +94,18 @@ public class OpenCamera extends CameraActivity {
                 }
             }
         });
+
+        btn_cancel_take_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CancelTakeImage();
+            }
+        });
     }
 
     private int TakePicture(int take_image, Mat rgba) {
        if (take_image == 1) {
+
            // add permission for writing in local storage first
            // create new mat that you want to save
            Mat matForSave = new Mat();
@@ -116,7 +130,7 @@ public class OpenCamera extends CameraActivity {
            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyy_HH-mm-ss");
            String currentDateTime = dateFormat.format(new Date());
 
-//           String fileName =  currentDateTime + ".jpg";
+           // String fileName =  currentDateTime + ".jpg";
            String fileName = getApplicationContext().getFilesDir().getPath()
                    + "/TYH-YourPhoto"
                    + currentDateTime
@@ -132,7 +146,7 @@ public class OpenCamera extends CameraActivity {
            Imgproc.cvtColor(matForSave, matForSave, Imgproc.COLOR_BGR2RGB);
 
            // Convert the Mat to Bimap to store into the gallery of the phone
-           Bitmap bitmapForSave = Bitmap.createBitmap(matForSave.cols(), matForSave.rows(), Bitmap.Config.ARGB_4444);
+           Bitmap bitmapForSave = Bitmap.createBitmap(matForSave.cols(), matForSave.rows(), Bitmap.Config.ARGB_8888);
            Utils.matToBitmap(matForSave, bitmapForSave);
 
            // Flip bitmap
@@ -163,7 +177,20 @@ public class OpenCamera extends CameraActivity {
            } catch (FileNotFoundException e) {
                throw new RuntimeException(e);
            }
+
+           // Convert bitmap to array
+           ByteArrayOutputStream stream = new ByteArrayOutputStream();
+           rotatedBimap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+           byte[] byteArray = stream.toByteArray();
+
+           // Send the converted bitmap to another activity
+//           cameraBridgeViewBase.disableView();
+           Intent FaceReusltintent = new Intent(this, FaceResult.class);
+           FaceReusltintent.putExtra("userface", byteArray);
+           startActivity(FaceReusltintent);
+
        }
+
         return take_image;
     }
 
@@ -208,5 +235,10 @@ public class OpenCamera extends CameraActivity {
         if(grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
             getPermission();
         }
+    }
+
+    public void CancelTakeImage() {
+        Intent Homeintent = new Intent(this, MainActivity.class);
+        startActivity(Homeintent);
     }
 }
