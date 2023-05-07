@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,6 +30,8 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.List;
+
+import ErrorDialog.NoFaceDialog;
 
 public class FaceResult extends AppCompatActivity {
 
@@ -88,7 +92,8 @@ public class FaceResult extends AppCompatActivity {
                         Rect rect = null;
 
                         if (faces.size() == 0 ) {
-                            Toast.makeText(FaceResult.this, "Oops! No face detected", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(FaceResult.this, "Oops! No face detected", Toast.LENGTH_LONG).show();
+                            OpenDialog();
                         }
                         else if (faces.size() > 1) {
                             Toast.makeText(FaceResult.this, "More than one face detected", Toast.LENGTH_LONG).show();
@@ -134,5 +139,10 @@ public class FaceResult extends AppCompatActivity {
                         Toast.makeText(FaceResult.this, "Detection failed due to " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void OpenDialog() {
+        NoFaceDialog noFaceDialog = new NoFaceDialog();
+        noFaceDialog.show(getSupportFragmentManager(), "no face");
     }
 }
