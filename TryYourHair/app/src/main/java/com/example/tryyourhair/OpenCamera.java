@@ -4,9 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,17 +21,21 @@ import android.widget.ImageView;
 import org.opencv.android.CameraActivity;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class OpenCamera extends CameraActivity {
 
@@ -93,7 +104,7 @@ public class OpenCamera extends CameraActivity {
 
            // Create a folder TYH-YourPhoto
            // and save image into that folder
-           File folder = new File(Environment.getExternalStorageDirectory().getPath() + "/TYH");
+           File folder = new File(getApplicationContext().getFilesDir().getPath() + "/TYH");
 
            // Check if the folder is exist
            boolean isExist = true;
@@ -106,15 +117,52 @@ public class OpenCamera extends CameraActivity {
            String currentDateTime = dateFormat.format(new Date());
 
 //           String fileName =  currentDateTime + ".jpg";
-           String fileName = Environment.getExternalStorageDirectory().getPath()
+           String fileName = getApplicationContext().getFilesDir().getPath()
                    + "/TYH-YourPhoto"
                    + currentDateTime
                    + ".jpg";
 
+           String fileNameForSave = "/TYH-YourPhoto" + currentDateTime + ".jpg";
+
            // Write the mat to the storage
            Imgcodecs.imwrite(fileName, matForSave);
            take_image = 0;
-           Log.d("TAKE PICTURE", fileName);
+
+           // Convert the color space from BGR to RGB
+           Imgproc.cvtColor(matForSave, matForSave, Imgproc.COLOR_BGR2RGB);
+
+           // Convert the Mat to Bimap to store into the gallery of the phone
+           Bitmap bitmapForSave = Bitmap.createBitmap(matForSave.cols(), matForSave.rows(), Bitmap.Config.ARGB_4444);
+           Utils.matToBitmap(matForSave, bitmapForSave);
+
+           // Flip bitmap
+           Matrix matrix = new Matrix();
+           matrix.postRotate(180);
+
+           Bitmap rotatedBimap = Bitmap.createBitmap(bitmapForSave,
+                   0,
+                   0,
+                   bitmapForSave.getWidth(),
+                   bitmapForSave.getHeight(),
+                   matrix,
+                   true);
+
+           // Save the bitmap to the gallery
+           OutputStream fileOutputStream;
+           try{
+               if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                   ContentResolver resolver = getContentResolver();
+                   ContentValues contentValues = new ContentValues();
+                   contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "your face from TYH");
+                   contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
+                   Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                   fileOutputStream = resolver.openOutputStream(Objects.requireNonNull(imageUri));
+                   rotatedBimap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+                   Objects.requireNonNull(fileOutputStream);
+               }
+           } catch (FileNotFoundException e) {
+               throw new RuntimeException(e);
+           }
        }
         return take_image;
     }
