@@ -1,10 +1,20 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.relay' version '0.3.06'
+
 }
 
 android {
     namespace 'com.example.tryyourhair'
     compileSdk 33
+
+    sourceSets {
+        main {
+            assets {
+                srcDir('src/main/ui-packages')
+            }
+        }
+    }
 
     defaultConfig {
         applicationId "com.example.tryyourhair"
