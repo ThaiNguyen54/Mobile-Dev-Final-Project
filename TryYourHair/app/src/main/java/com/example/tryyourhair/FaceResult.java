@@ -8,10 +8,12 @@ import com.example.tryyourhair.MainActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -75,6 +77,8 @@ public class FaceResult extends AppCompatActivity {
         // Receive bitmap from another activity
         byte[] byteArray = getIntent().getByteArrayExtra("userface");
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+
+        FaceResultView.setImageBitmap(bitmap);
 
         // Display the bitmap
         FaceResultView.setImageBitmap(bitmap);
@@ -165,7 +169,7 @@ public class FaceResult extends AppCompatActivity {
                         });
             }
         });
-//        DetectFaceThread.start();
+
 
         Thread ConfirmAndRetakeThread = new Thread(new Runnable() {
             @Override
@@ -185,7 +189,6 @@ public class FaceResult extends AppCompatActivity {
                 });
             }
         });
-//        ConfirmAndRetakeThread.start();
 
         new CountDownTimer(3000, 1000) {
             @Override

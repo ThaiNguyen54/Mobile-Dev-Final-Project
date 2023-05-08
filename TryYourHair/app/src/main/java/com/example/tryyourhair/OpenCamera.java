@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -136,7 +137,9 @@ public class OpenCamera extends CameraActivity {
                    + currentDateTime
                    + ".jpg";
 
-           String fileNameForSave = "/TYH-YourPhoto" + currentDateTime + ".jpg";
+//           String fileNameForSave = "/TYH-YourPhoto" + currentDateTime + ".jpg";
+           String fileNameForSave = "/TYH-YourPhoto/" + "THY-" + Calendar.getInstance().getTime() + ".jpg";
+           Log.d("FILE", fileNameForSave);
 
            // Write the mat to the storage
            Imgcodecs.imwrite(fileName, matForSave);
