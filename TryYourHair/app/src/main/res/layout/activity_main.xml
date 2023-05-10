@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/bnt_History"
+        android:id="@+id/bnt_opencamera"
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:layout_width="300dp"
         android:layout_height="72dp"
@@ -21,5 +21,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_homescreen"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="300dp"
+        android:layout_height="72dp"
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/purple_500"
+        android:onClick="OpenHome"
+        android:text="Open Home"
+        android:textColor="@color/white"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bnt_opencamera"  />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

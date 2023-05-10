@@ -16,12 +16,23 @@
         android:theme="@style/Theme.TryYourHair"
         tools:targetApi="31">
         <activity
+            android:name=".HomeScreen"
+            android:exported="true" >
+<!--            Uncomment below code if you want to set HomeSreen as default launcher-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+
+        <activity
             android:name=".FaceResult"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".OpenCamera"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

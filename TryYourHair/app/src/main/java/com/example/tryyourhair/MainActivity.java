@@ -22,4 +22,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, OpenCamera.class);
         startActivity(intent);
     }
+
+    public void OpenHome(View view) {
+        Intent intent = new Intent(this, HomeScreen.class);
+        startActivity(intent);
+    }
 }
