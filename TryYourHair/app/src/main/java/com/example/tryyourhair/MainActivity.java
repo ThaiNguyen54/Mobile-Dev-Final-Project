@@ -27,4 +27,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeScreen.class);
         startActivity(intent);
     }
+
+    public void OpenListHair(View view) {
+        Intent intent = new Intent(this, HairStyleRecyclerViewActivity.class);
+        startActivity(intent);
+    }
 }
