@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import org.opencv.android.OpenCVLoader;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenHome(View view) {
-        Intent intent = new Intent(this, HomeScreen.class);
+        Intent intent = new Intent(this, HairStyleCardView.class);
         startActivity(intent);
     }
 
@@ -35,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void OpenTestAPI (View view) {
         Intent intent = new Intent(this, TestAPI.class);
+        startActivity(intent);
+    }
+
+    public void OpenHomeScreen (View view) {
+        Intent intent = new Intent(this, HomeScreen.class);
         startActivity(intent);
     }
 }
