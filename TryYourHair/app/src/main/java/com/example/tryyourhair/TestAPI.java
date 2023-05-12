@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import Models.TestAPIHairstyle;
+import Models.HairstyleDataCallFromAPI;
 import RetrofitInstance.RetrofitClient;
 import RetrofitInterface.Methods;
 import retrofit2.Call;
@@ -42,11 +42,11 @@ public class TestAPI extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-                Call <TestAPIHairstyle> call = methods.getAllData();
-                call.enqueue(new Callback<TestAPIHairstyle>() {
+                Call <HairstyleDataCallFromAPI> call = methods.getAllData();
+                call.enqueue(new Callback<HairstyleDataCallFromAPI>() {
                     @Override
-                    public void onResponse(Call<TestAPIHairstyle> call, Response<TestAPIHairstyle> response) {
-                        ArrayList<TestAPIHairstyle.data> Hairstyles  = response.body().getHairstyles();
+                    public void onResponse(Call<HairstyleDataCallFromAPI> call, Response<HairstyleDataCallFromAPI> response) {
+                        ArrayList<HairstyleDataCallFromAPI.data> Hairstyles  = response.body().getHairstyles();
                         String[] hairstyle = new String[Hairstyles.size()];
                         for (int i = 0; i < Hairstyles.size(); i++) {
                             hairstyle[i] = "Id : " + Hairstyles.get(i).get_id() + "\nName : " + Hairstyles.get(i).getUrl() + " " + Hairstyles.get(i).getDes() ;
@@ -57,7 +57,7 @@ public class TestAPI extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<TestAPIHairstyle> call, Throwable t) {
+                    public void onFailure(Call<HairstyleDataCallFromAPI> call, Throwable t) {
                         Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
                         Log.d("ERROR", t.toString());
                     }

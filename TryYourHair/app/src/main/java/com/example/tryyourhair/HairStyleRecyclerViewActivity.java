@@ -2,7 +2,6 @@ package com.example.tryyourhair;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import java.util.List;
 
 import CustomAdapter.HairStyleAdapter;
 import Models.HairStyle;
-import Models.TestAPIHairstyle;
+import Models.HairstyleDataCallFromAPI;
 import RetrofitInstance.RetrofitClient;
 import RetrofitInterface.Methods;
 import retrofit2.Call;
@@ -32,7 +31,7 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view);
+        setContentView(R.layout.activity_home_screen_recycler_view);
 
         Thread GetAllHairStyleThread = new Thread(new Runnable() {
             @Override
@@ -43,11 +42,11 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
 
                 // Call API get Hairstyle
                 Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-                Call<TestAPIHairstyle> call = methods.getAllData();
-                call.enqueue(new Callback<TestAPIHairstyle>() {
+                Call<HairstyleDataCallFromAPI> call = methods.getAllData();
+                call.enqueue(new Callback<HairstyleDataCallFromAPI>() {
                     @Override
-                    public void onResponse(Call<TestAPIHairstyle> call, Response<TestAPIHairstyle> response) {
-                        ArrayList<TestAPIHairstyle.data> Hairstyles = response.body().getHairstyles();
+                    public void onResponse(Call<HairstyleDataCallFromAPI> call, Response<HairstyleDataCallFromAPI> response) {
+                        ArrayList<HairstyleDataCallFromAPI.data> Hairstyles = response.body().getHairstyles();
                         for (int i = 0; i < Hairstyles.size(); i++) {
                             Log.d("TEST",  Hairstyles.get(i).get_id());
 
@@ -70,7 +69,7 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<TestAPIHairstyle> call, Throwable t) {
+                    public void onFailure(Call<HairstyleDataCallFromAPI> call, Throwable t) {
 
                     }
                 });

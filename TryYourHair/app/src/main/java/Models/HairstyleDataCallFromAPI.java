@@ -2,7 +2,7 @@ package Models;
 
 import java.util.ArrayList;
 
-public class TestAPIHairstyle {
+public class HairstyleDataCallFromAPI {
     public boolean success;
     public String message;
     public ArrayList < data > Hairstyles;
@@ -22,11 +22,11 @@ public class TestAPIHairstyle {
         return message;
     }
 
-    public void setHairstyles(ArrayList<TestAPIHairstyle.data> hairstyles) {
+    public void setHairstyles(ArrayList<HairstyleDataCallFromAPI.data> hairstyles) {
         Hairstyles = hairstyles;
     }
 
-    public ArrayList<TestAPIHairstyle.data> getHairstyles() {
+    public ArrayList<HairstyleDataCallFromAPI.data> getHairstyles() {
         return Hairstyles;
     }
 

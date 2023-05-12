@@ -1,7 +1,6 @@
 package RetrofitInterface;
 
-import Models.HairStyle;
-import Models.TestAPIHairstyle;
+import Models.HairstyleDataCallFromAPI;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -10,5 +9,5 @@ public interface Methods {
 //    Call <TestAPIHairstyle> getAllData();
 
     @GET("ver1/hairstyle")
-    Call <TestAPIHairstyle> getAllData();
+    Call <HairstyleDataCallFromAPI> getAllData();
 }

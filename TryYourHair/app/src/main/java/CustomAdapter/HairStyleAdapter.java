@@ -11,9 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.tryyourhair.HairStyleRecyclerViewActivity;
 import com.example.tryyourhair.R;
-import com.example.tryyourhair.TestAPI;
 
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class HairStyleAdapter  extends RecyclerView.Adapter<HairStyleAdapter.Hai
     @Override
     public HairStyleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // inflate view from Google Card View
-        View itemView = layoutInflater.inflate(R.layout.activity_home_screen, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.activity_card_view_hairstyle, parent, false);
         return new HairStyleViewHolder(itemView);
     }
 
