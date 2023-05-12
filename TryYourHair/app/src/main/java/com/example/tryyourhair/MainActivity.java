@@ -32,4 +32,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HairStyleRecyclerViewActivity.class);
         startActivity(intent);
     }
+
+    public void OpenTestAPI (View view) {
+        Intent intent = new Intent(this, TestAPI.class);
+        startActivity(intent);
+    }
 }

@@ -1,27 +1,37 @@
 package Models;
 
 public class HairStyle {
-    private String url;
-    private String description;
+    private String _id;
+    private String Url;
+    private String Des;
 
-    public HairStyle(String url, String des) {
-        this.url = url;
-        this.description = des;
+    public HairStyle(String _id, String url, String des) {
+        this._id = _id;
+        this.Url = url;
+        this.Des = des;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getUrl() {
-        return url;
+        return Url;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.Url = url;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDes() {
+        return Des;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDes(String description) {
+        this.Des = description;
     }
 }

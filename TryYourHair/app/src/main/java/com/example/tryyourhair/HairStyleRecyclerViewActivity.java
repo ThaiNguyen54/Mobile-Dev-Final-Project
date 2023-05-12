@@ -6,18 +6,27 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import CustomAdapter.HairStyleAdapter;
 import Models.HairStyle;
+import Models.TestAPIHairstyle;
+import RetrofitInstance.RetrofitClient;
+import RetrofitInterface.Methods;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HairStyleRecyclerViewActivity extends AppCompatActivity {
 
     private RecyclerView rvHairStyle;
     private HairStyleAdapter hairStyleAdapter;
     private List<HairStyle> listHairStyle;
+    private ImageView img_hairstyle;
 
 
     @Override
@@ -25,24 +34,50 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
-        rvHairStyle = (RecyclerView) findViewById(R.id.rv_hairstyle);
+        Thread GetAllHairStyleThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                rvHairStyle = (RecyclerView) findViewById(R.id.rv_hairstyle);
+                listHairStyle = new ArrayList<>();
 
-        // create hairstyle data
-        listHairStyle = new ArrayList<>();
-        listHairStyle.add(new HairStyle("abc", "son tung's hair"));
-        listHairStyle.add(new HairStyle("sdfa", "dan truong's hair"));
-        listHairStyle.add(new HairStyle("xcvv", "Dam Vinh Hung's hair"));
-        listHairStyle.add(new HairStyle("gbx", "Jack's hair"));
 
-        hairStyleAdapter = new HairStyleAdapter(this, listHairStyle);
+                // Call API get Hairstyle
+                Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+                Call<TestAPIHairstyle> call = methods.getAllData();
+                call.enqueue(new Callback<TestAPIHairstyle>() {
+                    @Override
+                    public void onResponse(Call<TestAPIHairstyle> call, Response<TestAPIHairstyle> response) {
+                        ArrayList<TestAPIHairstyle.data> Hairstyles = response.body().getHairstyles();
+                        for (int i = 0; i < Hairstyles.size(); i++) {
+                            Log.d("TEST",  Hairstyles.get(i).get_id());
 
-        rvHairStyle.setAdapter(hairStyleAdapter);
 
-        // Recycler view scroll vertical
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                            listHairStyle.add(new HairStyle(
+                                    Hairstyles.get(i).get_id(),
+                                    Hairstyles.get(i).getUrl(),
+                                    Hairstyles.get(i).getDes()));
+                            hairStyleAdapter = new HairStyleAdapter(HairStyleRecyclerViewActivity.this, listHairStyle);
 
-        // Use GridLayout
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        rvHairStyle.setLayoutManager(gridLayoutManager);
+                            rvHairStyle.setAdapter(hairStyleAdapter);
+
+//                    // Recycler view scroll vertical
+//                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(HairStyleRecyclerViewActivity.this, LinearLayoutManager.VERTICAL, false);
+
+                            // Use GridLayout
+                            GridLayoutManager gridLayoutManager = new GridLayoutManager(HairStyleRecyclerViewActivity.this, 2);
+                            rvHairStyle.setLayoutManager(gridLayoutManager);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TestAPIHairstyle> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+        GetAllHairStyleThread.start();
+
+
     }
 }

@@ -4,12 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.tryyourhair.HairStyleRecyclerViewActivity;
 import com.example.tryyourhair.R;
+import com.example.tryyourhair.TestAPI;
 
 import java.util.List;
 
@@ -42,8 +46,9 @@ public class HairStyleAdapter  extends RecyclerView.Adapter<HairStyleAdapter.Hai
         HairStyle hairStyle = listHairStyle.get(position);
 
         // bind data to view holder
-        holder.url.setText(hairStyle.getUrl());
-        holder.des.setText(hairStyle.getDescription());
+//        holder.url.setText(hairStyle.getUrl());
+        holder.des.setText(hairStyle.getDes());
+        Glide.with(this.context).load(hairStyle.getUrl()).into(holder.img_hairstyle);
 
     }
 
@@ -57,9 +62,11 @@ public class HairStyleAdapter  extends RecyclerView.Adapter<HairStyleAdapter.Hai
     class HairStyleViewHolder extends RecyclerView.ViewHolder {
         private TextView url;
         private TextView des;
+        private ImageView img_hairstyle;
 
         public HairStyleViewHolder(View itemView) {
             super(itemView);
+            img_hairstyle = (ImageView) itemView.findViewById(R.id.img_hairstyle);
             url = (TextView) itemView.findViewById(R.id.txt_url);
             des = (TextView) itemView.findViewById(R.id.txt_hairdes);
         }

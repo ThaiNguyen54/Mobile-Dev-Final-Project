@@ -23,8 +23,12 @@
                 android:id="@+id/rv_hairstyle">
 
             </androidx.recyclerview.widget.RecyclerView>
+
         </GridLayout>
+
     </LinearLayout>
+
+
 
 
 

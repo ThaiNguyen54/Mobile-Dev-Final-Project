@@ -60,4 +60,22 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_homescreen"
         app:layout_constraintVertical_bias="0.044" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_opentestapi"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="300dp"
+        android:layout_height="72dp"
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/purple_500"
+        android:onClick="OpenTestAPI"
+        android:text="Open test api"
+        android:textColor="@color/white"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_homescreen"
+        app:layout_constraintVertical_bias="0.292" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
