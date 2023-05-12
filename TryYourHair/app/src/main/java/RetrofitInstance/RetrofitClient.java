@@ -5,7 +5,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit retrofit;
-    private static String BASE_URL = "http://192.168.1.6:3001/";
+
+//    private static String BASE_URL = "http://192.168.1.6:3001/";
+
+    private static String BASE_URL = "https://mobile-dev-final-project-7vw14yf8b-thainguyen54.vercel.app/";
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL)

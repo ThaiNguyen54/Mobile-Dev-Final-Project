@@ -28,10 +28,12 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
     private ImageView img_hairstyle;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_screen_recycler_view);
+        setContentView(R.layout.activity_hairstyle_list_recycler_view);
+
 
         Thread GetAllHairStyleThread = new Thread(new Runnable() {
             @Override
@@ -55,6 +57,7 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
                                     Hairstyles.get(i).get_id(),
                                     Hairstyles.get(i).getUrl(),
                                     Hairstyles.get(i).getDes()));
+
                             hairStyleAdapter = new HairStyleAdapter(HairStyleRecyclerViewActivity.this, listHairStyle);
 
                             rvHairStyle.setAdapter(hairStyleAdapter);
