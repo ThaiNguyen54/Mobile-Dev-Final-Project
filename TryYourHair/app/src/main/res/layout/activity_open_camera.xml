@@ -24,10 +24,11 @@
         android:layout_marginLeft="160dp"
         android:src="@drawable/taking_picture_icon"/>
 
+
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/cancel_icon"
+        android:src="@drawable/cross2_ic"
         android:id="@+id/btn_cancel"/>
 
 </RelativeLayout>

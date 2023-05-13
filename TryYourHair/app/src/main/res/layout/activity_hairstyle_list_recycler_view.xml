@@ -8,12 +8,13 @@
 
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/ln_hairstylelist">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,71 +23,80 @@
             <com.google.android.material.search.SearchBar
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/ln_hairstylelist"/>
 
-            <HorizontalScrollView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:scrollbars="none">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                    <Button
-                        style="@style/Widget.Material3.Button.TextButton"
-                        android:id="@+id/txtBtn_foryou"
+                <ImageView
+                    android:id="@+id/img_home"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/home_ic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/linearLayoutCompat"
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tabContentStart="30dp"
+                    app:tabMode="scrollable"
+                    android:layout_marginLeft="10dp">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/tab_item_foryou"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="For you"
-                        />
+                        android:text="For you" />
 
-                    <Button
-                        style="@style/Widget.Material3.Button.TextButton"
-                        android:id="@+id/txtBtn_newhair"
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/tab_item_newhairstyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Hairstyle"
-                        />
+                        android:text="New Hairstyle" />
 
-                    <Button
-                        android:id="@+id/txtBtn_Anime"
-                        style="@style/Widget.Material3.Button.TextButton"
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/tab_item_anime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Anime"
-                        />
-                    <Button
-                        android:id="@+id/txtBtn_forman"
-                        style="@style/Widget.Material3.Button.TextButton"
+                        android:text="Anime" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/tab_item_forman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="For Man"
-                        />
+                        android:text="For Man" />
 
-                    <Button
-                        android:id="@+id/txtBtn_forgirl"
-                        style="@style/Widget.Material3.Button.TextButton"
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/tab_item_forgirl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="For Girl" />
 
-                    <Button
-                        android:id="@+id/txtBtn_celeb"
-                        style="@style/Widget.Material3.Button.TextButton"
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/tab_item_celebhair"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hairstyle of Celebrities"
-                        />
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+                        android:text="Hairstyle of Celebrities" />
+                </com.google.android.material.tabs.TabLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>
+
+
 
         <GridLayout
             android:layout_width="match_parent"
@@ -104,9 +114,4 @@
         </GridLayout>
 
     </LinearLayout>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

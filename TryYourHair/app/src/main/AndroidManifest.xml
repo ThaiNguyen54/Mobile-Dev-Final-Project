@@ -24,19 +24,11 @@
             android:name=".TestAPI"
             android:exported="false" />
         <activity
-            android:name=".HairStyleRecyclerViewActivity"
+            android:name=".HairStyleRecyclerViewActivity" android:parentActivityName=".HomeScreen"
             android:exported="false" />
         <activity
             android:name=".HairStyleCardView"
             android:exported="true">
-
-            <!-- Uncomment below code if you want to set HomeSreen as default launcher -->
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".FaceResult"

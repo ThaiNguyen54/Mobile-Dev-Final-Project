@@ -241,7 +241,13 @@ public class OpenCamera extends CameraActivity {
     }
 
     public void CancelTakeImage() {
-        Intent Homeintent = new Intent(this, MainActivity.class);
-        startActivity(Homeintent);
+        Intent HomeScreenIntent = new Intent(this, HomeScreen.class);
+        startActivity(HomeScreenIntent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        CancelTakeImage();
     }
 }

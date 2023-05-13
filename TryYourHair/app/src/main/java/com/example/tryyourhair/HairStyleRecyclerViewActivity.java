@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
     private RecyclerView rvHairStyle;
     private HairStyleAdapter hairStyleAdapter;
     private List<HairStyle> listHairStyle;
-    private ImageView img_hairstyle;
+    private ImageView img_home;
 
 
 
@@ -33,6 +35,16 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hairstyle_list_recycler_view);
+
+        img_home = findViewById(R.id.img_home);
+
+        img_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent HomeScreenIntent = new Intent(HairStyleRecyclerViewActivity.this, HomeScreen.class);
+                startActivity(HomeScreenIntent);
+            }
+        });
 
 
         Thread GetAllHairStyleThread = new Thread(new Runnable() {
@@ -80,6 +92,12 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
         });
         GetAllHairStyleThread.start();
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent HomeScreenIntent = new Intent(this, HomeScreen.class);
+        startActivity(HomeScreenIntent);
     }
 }

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void OpenHome(View view) {
+    public void OpenCardView(View view) {
         Intent intent = new Intent(this, HairStyleCardView.class);
         startActivity(intent);
     }
