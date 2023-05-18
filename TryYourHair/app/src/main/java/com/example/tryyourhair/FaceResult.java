@@ -91,6 +91,7 @@ public class FaceResult extends AppCompatActivity {
                 FaceDetectorOptions realTimeFdo = new FaceDetectorOptions.Builder()
                         .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
                         .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
+                        .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
                         .build();
 
                 faceDetector = FaceDetection.getClient(realTimeFdo);
@@ -116,6 +117,9 @@ public class FaceResult extends AppCompatActivity {
                                 BtnConfirm.setVisibility(View.VISIBLE);
                                 BtnRetake.setVisibility(View.VISIBLE);
                                 Rect rect = null;
+                                float eulerX = 0;
+                                float eulerY = 0;
+                                float eulerZ = 0;
                                 if (faces.size() == 0 ) {
 //                                    Toast.makeText(FaceResult.this, "Oops! No face detected", Toast.LENGTH_LONG).show();
                                     OpenDialog();
@@ -133,6 +137,9 @@ public class FaceResult extends AppCompatActivity {
                                                 rect.top * (SCALING_FACTOR - 1),
                                                 rect.right * SCALING_FACTOR,
                                                 (rect.bottom * SCALING_FACTOR) + 90);
+                                        eulerX = face.getHeadEulerAngleX();
+                                        eulerY = face.getHeadEulerAngleY();
+                                        eulerZ = face.getHeadEulerAngleZ();
                                     }
 
 
@@ -151,10 +158,17 @@ public class FaceResult extends AppCompatActivity {
                                     Utils.matToBitmap(ProcessingMat, ProcessedBitmap); // Convert the Mat image to Bitmap image to display on image view
 
                                     // Display the processed Bitmap
+                                    float finalEulerX = eulerX;
+                                    float finalEulerY = eulerY;
+                                    float finalEulerZ = eulerZ;
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
                                             FaceResultView.setImageBitmap(ProcessedBitmap);
+                                            Toast.makeText(getApplicationContext(),"euler X: " + finalEulerX, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(),"euler Y: " + finalEulerY, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(),"euler Z: " + finalEulerZ, Toast.LENGTH_SHORT).show();
+
                                         }
                                     });
                                 }
