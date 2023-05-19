@@ -2,7 +2,7 @@
   {
     "level_": 0,
     "message_": "Start JSON generation. Platform version: 21 min SDK version: arm64-v8a",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|arm64-v8a",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -11,12 +11,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -101578387
+    "memoizedHashCode": 1412984333
   },
   {
     "level_": 0,
-    "message_": "JSON \u0027/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/.cxx/Debug/3o6y1h26/arm64-v8a/android_gradle_build.json\u0027 was up-to-date",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "message_": "JSON \u0027D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\arm64-v8a\\android_gradle_build.json\u0027 was up-to-date",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|arm64-v8a",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -25,12 +25,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 2094145803
+    "memoizedHashCode": 1451911318
   },
   {
     "level_": 0,
     "message_": "JSON generation completed without problems",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|arm64-v8a",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -39,6 +39,6 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 1001127692
+    "memoizedHashCode": -1779276884
   }
 ]

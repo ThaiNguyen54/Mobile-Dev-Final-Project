@@ -134,7 +134,7 @@ public class FaceResult extends AppCompatActivity {
                                         // Get detected faces as rectangle
                                         rect = face.getBoundingBox();
                                         rect.set(rect.left * SCALING_FACTOR,
-                                                rect.top * (SCALING_FACTOR - 1),
+                                                rect.top * (SCALING_FACTOR - 4),
                                                 rect.right * SCALING_FACTOR,
                                                 (rect.bottom * SCALING_FACTOR) + 90);
                                         eulerX = face.getHeadEulerAngleX();
