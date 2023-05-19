@@ -51,6 +51,7 @@ public class HairStyleAdapter  extends RecyclerView.Adapter<HairStyleAdapter.Hai
         // bind data to view holder
 //        holder.url.setText(hairStyle.getUrl());
         holder.des.setText(hairStyle.getDes());
+        holder.name.setText(hairStyle.getName());
         Glide.with(this.context).load(hairStyle.getUrl()).into(holder.img_hairstyle);
 
     }
@@ -63,6 +64,7 @@ public class HairStyleAdapter  extends RecyclerView.Adapter<HairStyleAdapter.Hai
 
     // Create an inner class HairStyleViewHolder
     class HairStyleViewHolder extends RecyclerView.ViewHolder {
+        private TextView name;
         private TextView url;
         private TextView des;
         private ImageView img_hairstyle;
@@ -72,6 +74,7 @@ public class HairStyleAdapter  extends RecyclerView.Adapter<HairStyleAdapter.Hai
             img_hairstyle = (ImageView) itemView.findViewById(R.id.img_hairstyle);
             url = (TextView) itemView.findViewById(R.id.txt_url);
             des = (TextView) itemView.findViewById(R.id.txt_hairdes);
+            name = (TextView) itemView.findViewById(R.id.txt_hairstyle_name) ;
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

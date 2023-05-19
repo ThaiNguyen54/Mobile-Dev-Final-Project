@@ -64,9 +64,11 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity implements 
                         ArrayList<HairstyleDataCallFromAPI.data> Hairstyles = response.body().getHairstyles();
                         for (int i = 0; i < Hairstyles.size(); i++) {
                             Log.d("TEST",  Hairstyles.get(i).get_id());
+                            Log.d("NAME", Hairstyles.get(i).getName());
 
 
                             listHairStyle.add(new HairStyle(
+                                    Hairstyles.get(i).getName(),
                                     Hairstyles.get(i).get_id(),
                                     Hairstyles.get(i).getUrl(),
                                     Hairstyles.get(i).getDes()));
@@ -107,8 +109,9 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity implements 
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(HairStyleRecyclerViewActivity.this, TestClickRecyclerView.class);
+        Intent intent = new Intent(HairStyleRecyclerViewActivity.this, HomeScreen.class);
         intent.putExtra("URL", listHairStyle.get(position).getUrl());
+        intent.putExtra("NAME", listHairStyle.get(position).getName());
         startActivity(intent);
     }
 }

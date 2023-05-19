@@ -8,21 +8,26 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
+    ImageView chose_hairstyle_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+        chose_hairstyle_img = findViewById(R.id.img_chose_hairstyle);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.item_home);
+
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -38,6 +43,9 @@ public class HomeScreen extends AppCompatActivity {
                 return true;
             }
         });
+        String Url = getIntent().getStringExtra("URL");
+        String Chose_Hairstyle_Name = getIntent().getStringExtra("NAME");
+        Glide.with(this).load(Url).into(chose_hairstyle_img);
     }
 
     public void OpenCameraActivity() {

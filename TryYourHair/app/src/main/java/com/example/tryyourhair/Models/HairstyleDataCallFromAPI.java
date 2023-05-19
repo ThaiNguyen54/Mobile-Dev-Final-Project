@@ -31,9 +31,18 @@ public class HairstyleDataCallFromAPI {
     }
 
     public class data {
+        public String Name;
         public String _id;
         public String Url;
         public String Des;
+
+        public String getName() {
+            return Name;
+        }
+
+        public void setName(String name) {
+            Name = name;
+        }
 
         public void set_id(String _id) {
             this._id = _id;
