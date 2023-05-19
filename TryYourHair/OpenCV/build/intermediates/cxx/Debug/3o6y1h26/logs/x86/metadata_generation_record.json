@@ -2,7 +2,7 @@
   {
     "level_": 0,
     "message_": "Start JSON generation. Platform version: 21 min SDK version: x86",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -11,12 +11,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 462277343
+    "memoizedHashCode": -763540527
   },
   {
     "level_": 0,
-    "message_": "rebuilding JSON /home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/.cxx/Debug/3o6y1h26/x86/android_gradle_build.json due to:",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "message_": "rebuilding JSON D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\\android_gradle_build.json due to:",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -25,12 +25,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -1454849850
+    "memoizedHashCode": 1352558275
   },
   {
     "level_": 0,
     "message_": "- no fingerprint file, will remove stale configuration folder",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -39,12 +39,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 726104944
+    "memoizedHashCode": -499712926
   },
   {
     "level_": 0,
-    "message_": "removing stale contents from \u0027/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/.cxx/Debug/3o6y1h26/x86\u0027",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "message_": "removing stale contents from \u0027D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\u0027",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -53,12 +53,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 379734361
+    "memoizedHashCode": -1019527013
   },
   {
     "level_": 0,
-    "message_": "created folder \u0027/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/.cxx/Debug/3o6y1h26/x86\u0027",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "message_": "created folder \u0027D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\u0027",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -67,12 +67,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 1910691685
+    "memoizedHashCode": -759510513
   },
   {
     "level_": 0,
-    "message_": "executing cmake /home/thainguyen/Android/Sdk/cmake/3.22.1/bin/cmake \\\n  \"-H/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper\" \\\n  -DCMAKE_SYSTEM_NAME\u003dAndroid \\\n  -DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON \\\n  -DCMAKE_SYSTEM_VERSION\u003d21 \\\n  -DANDROID_PLATFORM\u003dandroid-21 \\\n  -DANDROID_ABI\u003dx86 \\\n  -DCMAKE_ANDROID_ARCH_ABI\u003dx86 \\\n  -DANDROID_NDK\u003d/home/thainguyen/Android/Sdk/ndk/23.1.7779620 \\\n  -DCMAKE_ANDROID_NDK\u003d/home/thainguyen/Android/Sdk/ndk/23.1.7779620 \\\n  -DCMAKE_TOOLCHAIN_FILE\u003d/home/thainguyen/Android/Sdk/ndk/23.1.7779620/build/cmake/android.toolchain.cmake \\\n  -DCMAKE_MAKE_PROGRAM\u003d/home/thainguyen/Android/Sdk/cmake/3.22.1/bin/ninja \\\n  \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/build/intermediates/cxx/Debug/3o6y1h26/obj/x86\" \\\n  \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003d/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/build/intermediates/cxx/Debug/3o6y1h26/obj/x86\" \\\n  -DCMAKE_BUILD_TYPE\u003dDebug \\\n  \"-B/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/.cxx/Debug/3o6y1h26/x86\" \\\n  -GNinja \\\n  -DANDROID_STL\u003dc++_shared\n",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "message_": "executing cmake @echo off\n\"C:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\cmake.exe\" ^\n  \"-HD:\\\\Study\\\\Cirriculums\\\\Mobile Developement\\\\TT\\\\Thesis class\\\\Final Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\libcxx_helper\" ^\n  \"-DCMAKE_SYSTEM_NAME\u003dAndroid\" ^\n  \"-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\" ^\n  \"-DCMAKE_SYSTEM_VERSION\u003d21\" ^\n  \"-DANDROID_PLATFORM\u003dandroid-21\" ^\n  \"-DANDROID_ABI\u003dx86\" ^\n  \"-DCMAKE_ANDROID_ARCH_ABI\u003dx86\" ^\n  \"-DANDROID_NDK\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\" ^\n  \"-DCMAKE_ANDROID_NDK\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\" ^\n  \"-DCMAKE_TOOLCHAIN_FILE\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\\\\build\\\\cmake\\\\android.toolchain.cmake\" ^\n  \"-DCMAKE_MAKE_PROGRAM\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\ninja.exe\" ^\n  \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\\\Study\\\\Cirriculums\\\\Mobile Developement\\\\TT\\\\Thesis class\\\\Final Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3o6y1h26\\\\obj\\\\x86\" ^\n  \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\\\Study\\\\Cirriculums\\\\Mobile Developement\\\\TT\\\\Thesis class\\\\Final Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3o6y1h26\\\\obj\\\\x86\" ^\n  \"-DCMAKE_BUILD_TYPE\u003dDebug\" ^\n  \"-BD:\\\\Study\\\\Cirriculums\\\\Mobile Developement\\\\TT\\\\Thesis class\\\\Final Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\.cxx\\\\Debug\\\\3o6y1h26\\\\x86\" ^\n  -GNinja ^\n  \"-DANDROID_STL\u003dc++_shared\"\n",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -81,12 +81,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 1327354623
+    "memoizedHashCode": 1414479663
   },
   {
     "level_": 0,
-    "message_": "/home/thainguyen/Android/Sdk/cmake/3.22.1/bin/cmake \\\n  \"-H/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper\" \\\n  -DCMAKE_SYSTEM_NAME\u003dAndroid \\\n  -DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON \\\n  -DCMAKE_SYSTEM_VERSION\u003d21 \\\n  -DANDROID_PLATFORM\u003dandroid-21 \\\n  -DANDROID_ABI\u003dx86 \\\n  -DCMAKE_ANDROID_ARCH_ABI\u003dx86 \\\n  -DANDROID_NDK\u003d/home/thainguyen/Android/Sdk/ndk/23.1.7779620 \\\n  -DCMAKE_ANDROID_NDK\u003d/home/thainguyen/Android/Sdk/ndk/23.1.7779620 \\\n  -DCMAKE_TOOLCHAIN_FILE\u003d/home/thainguyen/Android/Sdk/ndk/23.1.7779620/build/cmake/android.toolchain.cmake \\\n  -DCMAKE_MAKE_PROGRAM\u003d/home/thainguyen/Android/Sdk/cmake/3.22.1/bin/ninja \\\n  \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/build/intermediates/cxx/Debug/3o6y1h26/obj/x86\" \\\n  \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003d/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/build/intermediates/cxx/Debug/3o6y1h26/obj/x86\" \\\n  -DCMAKE_BUILD_TYPE\u003dDebug \\\n  \"-B/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/.cxx/Debug/3o6y1h26/x86\" \\\n  -GNinja \\\n  -DANDROID_STL\u003dc++_shared\n",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "message_": "@echo off\n\"C:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\cmake.exe\" ^\n  \"-HD:\\\\Study\\\\Cirriculums\\\\Mobile Developement\\\\TT\\\\Thesis class\\\\Final Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\libcxx_helper\" ^\n  \"-DCMAKE_SYSTEM_NAME\u003dAndroid\" ^\n  \"-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\" ^\n  \"-DCMAKE_SYSTEM_VERSION\u003d21\" ^\n  \"-DANDROID_PLATFORM\u003dandroid-21\" ^\n  \"-DANDROID_ABI\u003dx86\" ^\n  \"-DCMAKE_ANDROID_ARCH_ABI\u003dx86\" ^\n  \"-DANDROID_NDK\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\" ^\n  \"-DCMAKE_ANDROID_NDK\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\" ^\n  \"-DCMAKE_TOOLCHAIN_FILE\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\\\\build\\\\cmake\\\\android.toolchain.cmake\" ^\n  \"-DCMAKE_MAKE_PROGRAM\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\ninja.exe\" ^\n  \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\\\Study\\\\Cirriculums\\\\Mobile Developement\\\\TT\\\\Thesis class\\\\Final Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3o6y1h26\\\\obj\\\\x86\" ^\n  \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\\\Study\\\\Cirriculums\\\\Mobile Developement\\\\TT\\\\Thesis class\\\\Final Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3o6y1h26\\\\obj\\\\x86\" ^\n  \"-DCMAKE_BUILD_TYPE\u003dDebug\" ^\n  \"-BD:\\\\Study\\\\Cirriculums\\\\Mobile Developement\\\\TT\\\\Thesis class\\\\Final Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\.cxx\\\\Debug\\\\3o6y1h26\\\\x86\" ^\n  -GNinja ^\n  \"-DANDROID_STL\u003dc++_shared\"\n",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -95,12 +95,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -1769684162
+    "memoizedHashCode": 1192551248
   },
   {
     "level_": 0,
-    "message_": "Exiting generation of /home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/.cxx/Debug/3o6y1h26/x86/compile_commands.json.bin normally",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "message_": "Exiting generation of D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\\compile_commands.json.bin normally",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -109,12 +109,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -2098084502
+    "memoizedHashCode": -406199035
   },
   {
     "level_": 0,
     "message_": "done executing cmake",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -123,12 +123,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -1683906576
+    "memoizedHashCode": 1385242850
   },
   {
     "level_": 0,
-    "message_": "deleted unexpected build output /home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/build/intermediates/cxx/Debug/3o6y1h26/obj/x86/libc++_shared.so in incremental regenerate",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "message_": "hard linked D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\\compile_commands.json to D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\tools\\debug\\x86\\compile_commands.json",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -137,26 +137,12 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": -1853711622
-  },
-  {
-    "level_": 0,
-    "message_": "hard linked /home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/.cxx/Debug/3o6y1h26/x86/compile_commands.json to /home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/.cxx/tools/debug/x86/compile_commands.json",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": -1357782893
+    "memoizedHashCode": 1517593499
   },
   {
     "level_": 0,
     "message_": "JSON generation completed without problems",
-    "file_": "/home/thainguyen/Study/Mobile Dev/Mobile-Dev-Final-Project/TryYourHair/OpenCV/libcxx_helper/CMakeLists.txt",
+    "file_": "D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
     "memoizedIsInitialized": 1,
@@ -165,6 +151,6 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 254166508
+    "memoizedHashCode": -971651362
   }
 ]

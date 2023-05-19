@@ -1,4 +1,4 @@
-package Models;
+package com.example.tryyourhair.Models;
 
 import java.util.ArrayList;
 

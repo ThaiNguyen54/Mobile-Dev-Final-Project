@@ -13,16 +13,17 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-import CustomAdapter.HairStyleAdapter;
-import Models.HairStyle;
-import Models.HairstyleDataCallFromAPI;
-import RetrofitInstance.RetrofitClient;
-import RetrofitInterface.Methods;
+import com.example.tryyourhair.CustomAdapter.HairStyleAdapter;
+import com.example.tryyourhair.Interface.RecyclerViewInterFace;
+import com.example.tryyourhair.Models.HairStyle;
+import com.example.tryyourhair.Models.HairstyleDataCallFromAPI;
+import com.example.tryyourhair.RetrofitInstance.RetrofitClient;
+import com.example.tryyourhair.RetrofitInterface.Methods;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HairStyleRecyclerViewActivity extends AppCompatActivity {
+public class HairStyleRecyclerViewActivity extends AppCompatActivity implements RecyclerViewInterFace {
 
     private RecyclerView rvHairStyle;
     private HairStyleAdapter hairStyleAdapter;
@@ -70,7 +71,10 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
                                     Hairstyles.get(i).getUrl(),
                                     Hairstyles.get(i).getDes()));
 
-                            hairStyleAdapter = new HairStyleAdapter(HairStyleRecyclerViewActivity.this, listHairStyle);
+                            hairStyleAdapter = new HairStyleAdapter(
+                                    HairStyleRecyclerViewActivity.this,
+                                    listHairStyle,
+                                    HairStyleRecyclerViewActivity.this);
 
                             rvHairStyle.setAdapter(hairStyleAdapter);
 
@@ -99,5 +103,12 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent HomeScreenIntent = new Intent(this, HomeScreen.class);
         startActivity(HomeScreenIntent);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(HairStyleRecyclerViewActivity.this, TestClickRecyclerView.class);
+        intent.putExtra("URL", listHairStyle.get(position).getUrl());
+        startActivity(intent);
     }
 }

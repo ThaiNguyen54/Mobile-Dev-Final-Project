@@ -1,6 +1,6 @@
-package RetrofitInterface;
+package com.example.tryyourhair.RetrofitInterface;
 
-import Models.HairstyleDataCallFromAPI;
+import com.example.tryyourhair.Models.HairstyleDataCallFromAPI;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

@@ -1,4 +1,4 @@
-package Models;
+package com.example.tryyourhair.Models;
 
 public class HairStyle {
     private String _id;

@@ -1,4 +1,4 @@
-package CustomAdapter;
+package com.example.tryyourhair.CustomAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,13 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tryyourhair.Interface.RecyclerViewInterFace;
 import com.example.tryyourhair.R;
 
 import java.util.List;
 
-import Models.HairStyle;
+import com.example.tryyourhair.Models.HairStyle;
 
 public class HairStyleAdapter  extends RecyclerView.Adapter<HairStyleAdapter.HairStyleViewHolder>{
+   private final RecyclerViewInterFace recyclerViewInterFace;
     private AdapterView.OnItemClickListener listener;
 
     private static final String TAG = "HairStyleAdapter";
@@ -26,10 +28,11 @@ public class HairStyleAdapter  extends RecyclerView.Adapter<HairStyleAdapter.Hai
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public HairStyleAdapter(Context context, List<HairStyle> lHairStyle) {
+    public HairStyleAdapter(Context context, List<HairStyle> lHairStyle, RecyclerViewInterFace recyclerViewInterFace) {
         this.context = context;
         this.listHairStyle = lHairStyle;
         this.layoutInflater = LayoutInflater.from(context);
+        this.recyclerViewInterFace = recyclerViewInterFace;
     }
 
     @NonNull
@@ -69,6 +72,18 @@ public class HairStyleAdapter  extends RecyclerView.Adapter<HairStyleAdapter.Hai
             img_hairstyle = (ImageView) itemView.findViewById(R.id.img_hairstyle);
             url = (TextView) itemView.findViewById(R.id.txt_url);
             des = (TextView) itemView.findViewById(R.id.txt_hairdes);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (recyclerViewInterFace != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            recyclerViewInterFace.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

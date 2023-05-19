@@ -3,20 +3,13 @@ package com.example.tryyourhair;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tryyourhair.MainActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -39,7 +32,7 @@ import org.opencv.imgproc.Imgproc;
 
 import java.util.List;
 
-import ErrorDialog.NoFaceDialog;
+import com.example.tryyourhair.ErrorDialog.NoFaceDialog;
 
 
 

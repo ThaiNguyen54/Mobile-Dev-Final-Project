@@ -15,9 +15,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import Models.HairstyleDataCallFromAPI;
-import RetrofitInstance.RetrofitClient;
-import RetrofitInterface.Methods;
+import com.example.tryyourhair.Models.HairstyleDataCallFromAPI;
+import com.example.tryyourhair.RetrofitInstance.RetrofitClient;
+import com.example.tryyourhair.RetrofitInterface.Methods;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

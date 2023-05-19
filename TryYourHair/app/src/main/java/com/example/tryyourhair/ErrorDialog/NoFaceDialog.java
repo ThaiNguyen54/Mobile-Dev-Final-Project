@@ -1,4 +1,4 @@
-package ErrorDialog;
+package com.example.tryyourhair.ErrorDialog;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

@@ -1,4 +1,4 @@
-package RetrofitInstance;
+package com.example.tryyourhair.RetrofitInstance;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

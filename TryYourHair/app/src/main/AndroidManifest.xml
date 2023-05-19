@@ -18,18 +18,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".TestClickRecyclerView"
+            android:exported="false" />
+        <activity
             android:name=".HomeScreen"
             android:exported="false" />
         <activity
             android:name=".TestAPI"
             android:exported="false" />
         <activity
-            android:name=".HairStyleRecyclerViewActivity" android:parentActivityName=".HomeScreen"
-            android:exported="false" />
+            android:name=".HairStyleRecyclerViewActivity"
+            android:exported="false"
+            android:parentActivityName=".HomeScreen" />
         <activity
             android:name=".HairStyleCardView"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".FaceResult"
             android:exported="false" />
