@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
@@ -19,6 +20,15 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.face.Face;
+import com.google.mlkit.vision.face.FaceDetection;
+import com.google.mlkit.vision.face.FaceDetector;
+import com.google.mlkit.vision.face.FaceDetectorOptions;
 
 import org.opencv.android.CameraActivity;
 import org.opencv.android.CameraBridgeViewBase;
@@ -26,6 +36,8 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
@@ -47,6 +59,10 @@ public class OpenCamera extends CameraActivity {
     ImageView btn_taking_picture;
     ImageView btn_cancel_take_image;
     int take_image = 0;
+    FaceDetector faceDetector;
+    private static final int SCALING_FACTOR = 10;
+
+    ImageView img_processing_face;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +71,21 @@ public class OpenCamera extends CameraActivity {
 
         getPermission();
 
+        img_processing_face = findViewById(R.id.img_processing_face);
+
         cameraBridgeViewBase = findViewById(R.id.camera_view);
         btn_taking_picture = findViewById(R.id.btn_take_picture);
         btn_cancel_take_image = findViewById(R.id.btn_cancel);
         cameraBridgeViewBase.setCameraIndex(1); // Use front camera
+
+        // Init FaceDetector Object
+        FaceDetectorOptions realTimeFdo = new FaceDetectorOptions.Builder()
+                .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
+                .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
+                .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
+                .build();
+
+        faceDetector = FaceDetection.getClient(realTimeFdo);
 
         cameraBridgeViewBase.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener2() {
             @Override
@@ -73,9 +100,90 @@ public class OpenCamera extends CameraActivity {
 
             @Override
             public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-                take_image = TakePicture(take_image, inputFrame.rgba());
-                return inputFrame.rgba();
+//                take_image = TakePicture(take_image, inputFrame.rgba());
 
+                Mat ProcessingMat = new Mat(); // Create a new mat
+
+//                Core.(inputFrame.rgba(), ProcessingMat, 2);
+                // Create a bitmap
+                Bitmap bitmap = Bitmap.createBitmap(
+                        inputFrame.rgba().cols(),
+                        inputFrame.rgba().rows(),
+                        Bitmap.Config.ARGB_8888);
+
+
+
+                Utils.matToBitmap(inputFrame.rgba(), bitmap);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        img_processing_face.setImageBitmap(bitmap);
+                    }
+                });
+
+                // Create smaller bitmap for faster processing
+                Bitmap smallerBitmap = Bitmap.createScaledBitmap(
+                        bitmap,
+                        bitmap.getWidth() / SCALING_FACTOR,
+                        bitmap.getHeight() / SCALING_FACTOR,
+                        false
+                );
+
+                // Create a InputImage object to input into face detector from smallerBitmap
+                InputImage inputImage = InputImage.fromBitmap(smallerBitmap, 0);
+
+                // Start the detection process
+                faceDetector.process(inputImage)
+                        .addOnSuccessListener(new OnSuccessListener<List<Face>>() {
+                            Rect rect = null;
+                            @Override
+                            public void onSuccess(List<Face> faces) {
+                                for (Face face : faces) {
+                                    rect = face.getBoundingBox();
+                                    rect.set(rect.left * SCALING_FACTOR,
+                                            rect.top * (SCALING_FACTOR - 1),
+                                            rect.right * SCALING_FACTOR,
+                                            (rect.bottom * SCALING_FACTOR) + 90);
+                                }
+
+                                if (rect != null) {
+                                    // Draw a bounding box for detected face
+//                                Mat ProcessingMat = new Mat(); // Create a new mat
+                                    Utils.bitmapToMat(bitmap, ProcessingMat); // Convert the Bitmap image to Mat image
+                                    Imgproc.rectangle(
+                                            ProcessingMat,
+                                            new Point((float) rect.left, (float) rect.bottom),
+                                            new Point((float) rect.right, (float) rect.top),
+                                            new Scalar(255, 0, 0),
+                                            5
+                                    );
+                                    Bitmap ProcessedBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true); // Copy the original Bitmap to a mutable bitmap
+                                    Utils.matToBitmap(ProcessingMat, ProcessedBitmap); // Convert the Mat image to Bitmap image to display on image view
+//                                    runOnUiThread(new Runnable() {
+//                                        @Override
+//                                        public void run() {
+//                                            img_processing_face.setImageBitmap(ProcessedBitmap);
+//                                        }
+//                                    });
+                                }
+
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Detection failed
+                                Toast.makeText(OpenCamera.this, "Detection failed due to " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+//                Log.d("TYPE inputFrame", inputFrame.rgba().getClass().toString());
+//                Log.d("SIZE inputFrame", inputFrame.rgba().size().toString());
+
+//                Log.d("TYPE processingMat", ProcessingMat.getClass().toString());
+//                Log.d("SIZE ProcessingMat", ProcessingMat.size().toString());
+
+                return inputFrame.rgba();
+//                return ProcessingMat;
             }
         });
 
