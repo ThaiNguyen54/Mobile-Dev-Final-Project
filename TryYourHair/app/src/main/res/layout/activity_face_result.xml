@@ -36,8 +36,8 @@
             android:paddingLeft="3dp">
 
            <Button
-               android:layout_width="200dp"
-               android:layout_height="match_parent"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
                android:text="Retake"
                android:drawableRight="@drawable/camera_icon"
                android:paddingRight="50dp"
@@ -53,14 +53,15 @@
             android:layout_weight="1">
 
             <Button
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:text="Confirm"
+                android:id="@+id/btn_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:drawableRight="@drawable/arrow_forward_icon"
-                android:paddingRight="50dp"
-                android:paddingLeft="40dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:id="@+id/btn_confirm"/>
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="Confirm"
+                android:layout_marginLeft="15dp"/>
 
         </LinearLayout>
     </LinearLayout>

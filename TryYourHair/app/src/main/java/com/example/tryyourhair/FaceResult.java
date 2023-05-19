@@ -184,7 +184,10 @@ public class FaceResult extends AppCompatActivity {
                 BtnConfirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        OpenHomeScreen();
+                        Intent HomeIntent = new Intent(FaceResultView.getContext(), HomeScreen.class);
+                        HomeIntent.putExtra("confirmed_face", byteArray);
+                        startActivity(HomeIntent);
+//                        OpenHomeScreen();
                     }
                 });
 
@@ -212,7 +215,7 @@ public class FaceResult extends AppCompatActivity {
     }
 
     public void OpenHomeScreen() {
-        Intent HomeIntent = new Intent(this, MainActivity.class);
+        Intent HomeIntent = new Intent(this, HomeScreen.class);
         startActivity(HomeIntent);
     }
 

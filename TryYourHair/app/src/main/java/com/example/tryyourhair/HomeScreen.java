@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +20,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     ImageView chose_hairstyle_img;
+    ImageView confirmed_face_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,10 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
 
         chose_hairstyle_img = findViewById(R.id.img_chose_hairstyle);
+        confirmed_face_img = findViewById(R.id.img_confirmed_face);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.item_home);
+
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -46,6 +51,10 @@ public class HomeScreen extends AppCompatActivity {
         String Url = getIntent().getStringExtra("URL");
         String Chose_Hairstyle_Name = getIntent().getStringExtra("NAME");
         Glide.with(this).load(Url).into(chose_hairstyle_img);
+
+        byte[] Confirmed_Face_ByteArray = getIntent().getByteArrayExtra("confirmed_face");
+        Bitmap Confirmed_Face_Bitmap = BitmapFactory.decodeByteArray(Confirmed_Face_ByteArray,0, Confirmed_Face_ByteArray.length);
+        confirmed_face_img.setImageBitmap(Confirmed_Face_Bitmap);
     }
 
     public void OpenCameraActivity() {
