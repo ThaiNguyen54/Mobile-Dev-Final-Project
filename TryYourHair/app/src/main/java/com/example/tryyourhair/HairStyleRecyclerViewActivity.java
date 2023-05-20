@@ -19,6 +19,8 @@ import com.example.tryyourhair.Models.HairStyle;
 import com.example.tryyourhair.Models.HairstyleDataCallFromAPI;
 import com.example.tryyourhair.RetrofitInstance.RetrofitClient;
 import com.example.tryyourhair.RetrofitInterface.Methods;
+import com.example.tryyourhair.Singleton.Singleton;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +31,7 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity implements 
     private HairStyleAdapter hairStyleAdapter;
     private List<HairStyle> listHairStyle;
     private ImageView img_home;
+    Singleton singleton;
 
 
 
@@ -38,6 +41,7 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_hairstyle_list_recycler_view);
 
         img_home = findViewById(R.id.img_home);
+        singleton = Singleton.getInstance();
 
         img_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,8 +114,12 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity implements 
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(HairStyleRecyclerViewActivity.this, HomeScreen.class);
-        intent.putExtra("URL", listHairStyle.get(position).getUrl());
-        intent.putExtra("NAME", listHairStyle.get(position).getName());
+        String ChoseHairURL = listHairStyle.get(position).getUrl();
+        String ChoseHairName = listHairStyle.get(position).getName();
+
+        singleton.setChoseHair(true);
+        singleton.setChoseHairURL(ChoseHairURL);
+        singleton.setChoseHairstyleName(ChoseHairName);
         startActivity(intent);
     }
 }

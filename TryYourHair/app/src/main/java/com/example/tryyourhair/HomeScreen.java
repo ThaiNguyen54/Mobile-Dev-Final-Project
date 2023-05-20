@@ -6,14 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.tryyourhair.Singleton.Singleton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -21,6 +25,8 @@ public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     ImageView chose_hairstyle_img;
     ImageView confirmed_face_img;
+    Singleton singleton;
+    Button btn_generate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +37,34 @@ public class HomeScreen extends AppCompatActivity {
         confirmed_face_img = findViewById(R.id.img_confirmed_face);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.item_home);
+        btn_generate = findViewById(R.id.btn_generate);
+
+        singleton = Singleton.getInstance();
 
 
+        btn_generate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!singleton.getConfirmedFace() && !singleton.getChoseHair()) {
+                    Toast.makeText(
+                            HomeScreen.this,
+                            "Please provide a photo of you and choose a hairstyle",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else if (!singleton.getChoseHair()) {
+                    Toast.makeText(
+                            HomeScreen.this,
+                            "Please choose a hairstyle",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else if (!singleton.getConfirmedFace()) {
+                    Toast.makeText(
+                            HomeScreen.this,
+                            "Please provide a photo of you",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -48,13 +80,22 @@ public class HomeScreen extends AppCompatActivity {
                 return true;
             }
         });
-        String Url = getIntent().getStringExtra("URL");
-        String Chose_Hairstyle_Name = getIntent().getStringExtra("NAME");
-        Glide.with(this).load(Url).into(chose_hairstyle_img);
 
-        byte[] Confirmed_Face_ByteArray = getIntent().getByteArrayExtra("confirmed_face");
-        Bitmap Confirmed_Face_Bitmap = BitmapFactory.decodeByteArray(Confirmed_Face_ByteArray,0, Confirmed_Face_ByteArray.length);
-        confirmed_face_img.setImageBitmap(Confirmed_Face_Bitmap);
+        if(singleton.getChoseHair() == false) {
+            chose_hairstyle_img.setImageResource(R.drawable.img_ex2);
+        }
+        else if (singleton.getChoseHair() == true) {
+            Glide.with(this).load(singleton.getChoseHairURL()).into(chose_hairstyle_img);
+        }
+
+        if(singleton.getConfirmedFace() == false) {
+            confirmed_face_img.setImageResource(R.drawable.img_ex1);
+        }
+        else if (singleton.getConfirmedFace() == true) {
+            byte[] Confirmed_Face_ByteArray = singleton.getConfirmedFaceImage();
+            Bitmap Confirmed_Face_Bitmap = BitmapFactory.decodeByteArray(Confirmed_Face_ByteArray,0, Confirmed_Face_ByteArray.length);
+            confirmed_face_img.setImageBitmap(Confirmed_Face_Bitmap);
+        }
     }
 
     public void OpenCameraActivity() {

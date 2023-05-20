@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tryyourhair.Singleton.Singleton;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
@@ -46,6 +47,7 @@ public class FaceResult extends AppCompatActivity {
 
     Button BtnRetake;
     Button BtnConfirm;
+    Singleton singleton;
 
 
     //This factor is used to make the detecting image smaller, to make the process faster
@@ -57,6 +59,7 @@ public class FaceResult extends AppCompatActivity {
         setContentView(R.layout.activity_face_result);
 
         OpenCVLoader.initDebug();
+        singleton = Singleton.getInstance();
 
         FaceResultView = findViewById(R.id.face_img_view);
         ScanEffectView = findViewById(R.id.scan_effect);
@@ -185,10 +188,9 @@ public class FaceResult extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent HomeIntent = new Intent(FaceResultView.getContext(), HomeScreen.class);
-                        HomeIntent.putExtra("confirmed_face", byteArray);
-                        startActivity(HomeIntent);
-//                        OpenHomeScreen();
-                    }
+                        singleton.setConfirmedFaceImage(byteArray);
+                        singleton.setConfirmedFace(true);
+                        startActivity(HomeIntent);}
                 });
 
                 BtnRetake.setOnClickListener(new View.OnClickListener() {
