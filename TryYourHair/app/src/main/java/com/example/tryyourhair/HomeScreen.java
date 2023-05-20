@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +21,12 @@ import com.bumptech.glide.Glide;
 import com.example.tryyourhair.Singleton.Singleton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -27,6 +34,11 @@ public class HomeScreen extends AppCompatActivity {
     ImageView confirmed_face_img;
     Singleton singleton;
     Button btn_generate;
+    final String SERVER_IP = "192.168.1.12";
+    final int SERVER_PORT = 9000;
+    final int CLIENT_PORT = 9999;
+    final int BUFFER_SIZE = 65536;
+    Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +74,53 @@ public class HomeScreen extends AppCompatActivity {
                             HomeScreen.this,
                             "Please provide a photo of you",
                             Toast.LENGTH_SHORT).show();
+                }
+                else if (singleton.getConfirmedFace() && singleton.getChoseHair()) {
+                    Thread SendAndReceiveMessage = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // In UDP, before receiving message from server,
+                            // we need to send message to the server firs
+                            DatagramSocket udpSocket = null;
+                            try {
+                                udpSocket = new DatagramSocket(CLIENT_PORT);
+
+                                String message = "hello server from android";
+
+                                byte[] data = message.getBytes();
+                                InetAddress serverAddress = null;
+                                serverAddress = InetAddress.getByName(SERVER_IP);
+                                DatagramPacket sendingPacket = new DatagramPacket(
+                                        data,
+                                        data.length,
+                                        serverAddress,
+                                        SERVER_PORT
+                                );
+                                udpSocket.send(sendingPacket);
+
+                                // Receive response from the server
+                                byte[] messageBuffer = new byte[BUFFER_SIZE];
+                                DatagramPacket receivingMessagePacket = new DatagramPacket(
+                                        messageBuffer,
+                                        messageBuffer.length);
+                                udpSocket.receive(receivingMessagePacket);
+                                String str_Message = new String(
+                                        messageBuffer,
+                                        0,
+                                        receivingMessagePacket.getLength());
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(HomeScreen.this, str_Message, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                udpSocket.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    SendAndReceiveMessage.start();
                 }
             }
         });
