@@ -21,6 +21,10 @@
         android:theme="@style/Theme.TryYourHair"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="CLOUDINARY_URL"
+            android:value="CLOUDINARY_URL=cloudinary://264138646567889:463OatP7VdIs_2F5vxVlmRm7VAg@dkwihofta"/>
         <activity
             android:name=".HomeScreen"
             android:exported="false" />

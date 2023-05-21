@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,15 +19,27 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.cloudinary.android.MediaManager;
+import com.example.tryyourhair.Models.GenerationData;
 import com.example.tryyourhair.Singleton.Singleton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -42,6 +55,8 @@ public class HomeScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
@@ -79,45 +94,60 @@ public class HomeScreen extends AppCompatActivity {
                     Thread SendAndReceiveMessage = new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            // In UDP, before receiving message from server,
-                            // we need to send message to the server firs
-                            DatagramSocket udpSocket = null;
                             try {
-                                udpSocket = new DatagramSocket(CLIENT_PORT);
+                                // Initiate a socket instance
+                                Socket socket = new Socket(SERVER_IP, SERVER_PORT);
 
-                                String message = "hello server from android";
 
-                                byte[] data = message.getBytes();
-                                InetAddress serverAddress = null;
-                                serverAddress = InetAddress.getByName(SERVER_IP);
-                                DatagramPacket sendingPacket = new DatagramPacket(
-                                        data,
-                                        data.length,
-                                        serverAddress,
-                                        SERVER_PORT
-                                );
-                                udpSocket.send(sendingPacket);
+                                OutputStream outputStream = socket.getOutputStream();
+
+
+                                // Encode image for sending to server
+                                byte[] Confirmed_Face_ByteArray = singleton.getConfirmedFaceImage();
+                                Bitmap Confirmed_Face_Bitmap = BitmapFactory.decodeByteArray(Confirmed_Face_ByteArray,0, Confirmed_Face_ByteArray.length);
+
+                                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                                Confirmed_Face_Bitmap.compress(Bitmap.CompressFormat.JPEG, 100 ,byteArrayOutputStream);
+
+                                byte[] Compressed_Image = byteArrayOutputStream.toByteArray();
+                                String base64Image = Base64.encodeToString(Compressed_Image, Base64.DEFAULT);
+                                String processedBase64ImageString = base64Image.replaceAll("\n", "");
+                                processedBase64ImageString = processedBase64ImageString.replaceAll("\r", "");
+
+                                // Convert the generation data to JSON string
+                                GenerationData generationData = new GenerationData(
+                                        processedBase64ImageString,
+                                        singleton.getConfirmedFaceName(),
+                                        singleton.getChoseHairstyleName());
+
+                                String GenerationJSON = gson.toJson(generationData);
+                                GenerationJSON = GenerationJSON;
+
+//                                Establish a connection to the server
+                                outputStream.write(GenerationJSON.getBytes());
+                                outputStream.flush();
+//                                outputStream.close();
+//                                socket.close();
+
 
                                 // Receive response from the server
-                                byte[] messageBuffer = new byte[BUFFER_SIZE];
-                                DatagramPacket receivingMessagePacket = new DatagramPacket(
-                                        messageBuffer,
-                                        messageBuffer.length);
-                                udpSocket.receive(receivingMessagePacket);
-                                String str_Message = new String(
-                                        messageBuffer,
-                                        0,
-                                        receivingMessagePacket.getLength());
+                                BufferedReader bufferedReader = new BufferedReader(
+                                        new InputStreamReader(socket.getInputStream())
+                                );
+                                // make sure in the response from the server having "\n" character
+                                String response = bufferedReader.readLine();
+
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(HomeScreen.this, str_Message, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(HomeScreen.this, response, Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                                udpSocket.close();
-                            } catch (IOException e) {
+//                                socket.close(); // Close the connection
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
+
                         }
                     });
                     SendAndReceiveMessage.start();

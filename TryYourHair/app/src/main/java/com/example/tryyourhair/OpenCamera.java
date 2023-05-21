@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.tryyourhair.Singleton.Singleton;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
@@ -54,6 +55,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class OpenCamera extends CameraActivity {
+    Singleton singleton;
     CameraBridgeViewBase cameraBridgeViewBase;
     ImageView btn_taking_picture;
     ImageView btn_cancel_take_image;
@@ -70,6 +72,7 @@ public class OpenCamera extends CameraActivity {
 
         getPermission();
 
+        singleton = Singleton.getInstance();
         cameraBridgeViewBase = findViewById(R.id.camera_view);
         btn_taking_picture = findViewById(R.id.btn_take_picture);
         btn_cancel_take_image = findViewById(R.id.btn_cancel);
@@ -280,7 +283,8 @@ public class OpenCamera extends CameraActivity {
                    + ".jpg";
 
 //           String fileNameForSave = "/TYH-YourPhoto" + currentDateTime + ".jpg";
-           String fileNameForSave = "/TYH-YourPhoto/" + "THY-" + Calendar.getInstance().getTime() + ".jpg";
+           String fileNameForSave = "/TYH-YourPhoto/" + "THY-" + Calendar.getInstance().getTime();
+           singleton.setConfirmedFaceName(fileNameForSave);
            Log.d("FILE", fileNameForSave);
 
            // Write the mat to the storage
@@ -312,7 +316,7 @@ public class OpenCamera extends CameraActivity {
                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                    ContentResolver resolver = getContentResolver();
                    ContentValues contentValues = new ContentValues();
-                   contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "your face from TYH");
+                   contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileNameForSave);
                    contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
                    Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
                    fileOutputStream = resolver.openOutputStream(Objects.requireNonNull(imageUri));

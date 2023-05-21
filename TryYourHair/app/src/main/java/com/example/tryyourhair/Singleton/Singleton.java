@@ -6,6 +6,7 @@ public class Singleton {
     private Boolean isConfirmedFace;
     private String ChoseHairURL;
     private String ChoseHairstyleName;
+    private String ConfirmedFaceName;
     private byte[] ConfirmedFaceImage;
 
 
@@ -59,5 +60,13 @@ public class Singleton {
 
     public byte[] getConfirmedFaceImage() {
         return ConfirmedFaceImage;
+    }
+
+    public String getConfirmedFaceName() {
+        return ConfirmedFaceName;
+    }
+
+    public void setConfirmedFaceName(String confirmedFaceName) {
+        ConfirmedFaceName = confirmedFaceName;
     }
 }
