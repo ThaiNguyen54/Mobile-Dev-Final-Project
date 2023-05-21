@@ -283,7 +283,8 @@ public class OpenCamera extends CameraActivity {
                    + ".jpg";
 
 //           String fileNameForSave = "/TYH-YourPhoto" + currentDateTime + ".jpg";
-           String fileNameForSave = "/TYH-YourPhoto/" + "THY-" + Calendar.getInstance().getTime();
+//           String fileNameForSave = "/TYH-YourPhoto/" + "THY-" + Calendar.getInstance().getTime();
+           String fileNameForSave = "THY_" + Calendar.getInstance().getTime();
            singleton.setConfirmedFaceName(fileNameForSave);
            Log.d("FILE", fileNameForSave);
 
