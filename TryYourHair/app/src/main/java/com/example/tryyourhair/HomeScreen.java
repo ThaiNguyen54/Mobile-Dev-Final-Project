@@ -47,7 +47,7 @@ public class HomeScreen extends AppCompatActivity {
     ImageView confirmed_face_img;
     Singleton singleton;
     Button btn_generate;
-    final String SERVER_IP = "192.168.1.12";
+    final String SERVER_IP = "192.168.1.5";
     final int SERVER_PORT = 9000;
     final int CLIENT_PORT = 9999;
     final int BUFFER_SIZE = 65536;
