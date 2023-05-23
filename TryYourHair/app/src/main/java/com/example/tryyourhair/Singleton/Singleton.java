@@ -9,6 +9,7 @@ public class Singleton {
     private String ConfirmedFaceName;
     private byte[] ConfirmedFaceImage;
     private String GeneratedURL;
+    private String RegistrationToken;
 
 
     private Singleton() {
@@ -77,5 +78,13 @@ public class Singleton {
 
     public String getGeneratedURL() {
         return GeneratedURL;
+    }
+
+    public void setRegistrationToken(String registrationToken) {
+        RegistrationToken = registrationToken;
+    }
+
+    public String getRegistrationToken() {
+        return RegistrationToken;
     }
 }

@@ -5,22 +5,24 @@ public class GenerationData {
     private String ImageName;
     private String HairstyleName;
     private String GeneratedImageURL;
+    private String RegistrationToken;
 
     // Constructor with 3 parameters
-    public GenerationData(String ImageBase64, String ImageName, String HairstyleName) {
+    public GenerationData(String ImageBase64, String ImageName, String HairstyleName, String RegistrationToken) {
         this.ImageBase64 = ImageBase64;
         this.ImageName = ImageName;
         this.HairstyleName = HairstyleName;
         this.GeneratedImageURL = "";
+        this.RegistrationToken = RegistrationToken;
     }
 
     // Constructor with 4 parameters
-    public GenerationData(String ImageBase64, String ImageName, String HairstyleName, String GeneratedImageURL) {
-        this.ImageBase64 = ImageBase64;
-        this.ImageName = ImageName;
-        this.HairstyleName = HairstyleName;
-        this.GeneratedImageURL = GeneratedImageURL;
-    }
+//    public GenerationData(String ImageBase64, String ImageName, String HairstyleName, String GeneratedImageURL) {
+//        this.ImageBase64 = ImageBase64;
+//        this.ImageName = ImageName;
+//        this.HairstyleName = HairstyleName;
+//        this.GeneratedImageURL = GeneratedImageURL;
+//    }
 
     public void setImageBase64(String imageBase64) {
         ImageBase64 = imageBase64;
@@ -52,5 +54,13 @@ public class GenerationData {
 
     public String getGeneratedImageURL() {
         return GeneratedImageURL;
+    }
+
+    public void setRegistrationToken(String registrationToken) {
+        RegistrationToken = registrationToken;
+    }
+
+    public String getRegistrationToken() {
+        return RegistrationToken;
     }
 }

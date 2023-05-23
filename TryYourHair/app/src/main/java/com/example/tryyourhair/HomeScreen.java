@@ -97,7 +97,7 @@ public class HomeScreen extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
                 else if (singleton.getConfirmedFace() && singleton.getChoseHair()) {
-                    Thread SendAndReceiveMessage = new Thread(new Runnable() {
+                    Thread SendGenerationData = new Thread(new Runnable() {
                         @Override
                         public void run() {
                             try {
@@ -124,38 +124,22 @@ public class HomeScreen extends AppCompatActivity {
                                 GenerationData generationData = new GenerationData(
                                         processedBase64ImageString,
                                         singleton.getConfirmedFaceName(),
-                                        singleton.getChoseHairstyleName());
+                                        singleton.getChoseHairstyleName(),
+                                        singleton.getRegistrationToken());
 
                                 String GenerationJSON = gson.toJson(generationData);
-                                GenerationJSON = GenerationJSON;
-
 //                                Establish a connection to the server
                                 outputStream.write(GenerationJSON.getBytes());
                                 outputStream.flush();
-//                                outputStream.close();
-//                                socket.close();
-//
-//                                // Receive response from the server
-//                                BufferedReader bufferedReader = new BufferedReader(
-//                                        new InputStreamReader(socket.getInputStream())
-//                                );
-//
-//                                 // Make sure in the response from the server having "\n" character
-//                                String response = bufferedReader.readLine();
-//
-//                                runOnUiThread(new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//                                        Toast.makeText(HomeScreen.this, GeneratedURL, Toast.LENGTH_SHORT).show();}
-//                                });
-////                                socket.close(); // Close the connection
+                                outputStream.close();
+                                socket.close();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
 
                         }
                     });
-                    SendAndReceiveMessage.start();
+                    SendGenerationData.start();
                 }
             }
         });
