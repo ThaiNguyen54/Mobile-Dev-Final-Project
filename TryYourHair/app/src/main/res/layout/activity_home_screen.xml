@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".HomeScreen">
 
-    <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView
         android:id="@+id/card"
         style="?attr/materialCardViewFilledStyle"
         android:layout_width="400dp"
@@ -120,6 +120,15 @@
 
     </androidx.cardview.widget.CardView>
 
+
+<!--    <EditText-->
+<!--        android:layout_width="400dp"-->
+<!--        android:layout_height="500dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:id="@+id/txt_token"/>-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -161,9 +161,9 @@ public class FaceResult extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             FaceResultView.setImageBitmap(ProcessedBitmap);
-                                            Toast.makeText(getApplicationContext(),"euler X: " + finalEulerX, Toast.LENGTH_SHORT).show();
-                                            Toast.makeText(getApplicationContext(),"euler Y: " + finalEulerY, Toast.LENGTH_SHORT).show();
-                                            Toast.makeText(getApplicationContext(),"euler Z: " + finalEulerZ, Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getApplicationContext(),"euler X: " + finalEulerX, Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getApplicationContext(),"euler Y: " + finalEulerY, Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getApplicationContext(),"euler Z: " + finalEulerZ, Toast.LENGTH_SHORT).show();
 
                                         }
                                     });

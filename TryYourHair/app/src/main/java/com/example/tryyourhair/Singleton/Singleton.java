@@ -8,6 +8,7 @@ public class Singleton {
     private String ChoseHairstyleName;
     private String ConfirmedFaceName;
     private byte[] ConfirmedFaceImage;
+    private String GeneratedURL;
 
 
     private Singleton() {
@@ -68,5 +69,13 @@ public class Singleton {
 
     public void setConfirmedFaceName(String confirmedFaceName) {
         ConfirmedFaceName = confirmedFaceName;
+    }
+
+    public void setGeneratedURL(String generatedURL) {
+        GeneratedURL = generatedURL;
+    }
+
+    public String getGeneratedURL() {
+        return GeneratedURL;
     }
 }

@@ -150,6 +150,7 @@ android {
             path (project.projectDir.toString() + '/libcxx_helper/CMakeLists.txt')
         }
     }
+    buildToolsVersion '33.0.2'
 }
 
 dependencies {

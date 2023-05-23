@@ -15,19 +15,26 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cloudinary.android.MediaManager;
+import com.example.tryyourhair.MQTT.MQTTHandler;
 import com.example.tryyourhair.Models.GenerationData;
 import com.example.tryyourhair.Singleton.Singleton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -47,7 +54,9 @@ public class HomeScreen extends AppCompatActivity {
     ImageView confirmed_face_img;
     Singleton singleton;
     Button btn_generate;
-    final String SERVER_IP = "192.168.1.5";
+    final String SERVER_IP = "192.168.1.3";
+    final String BROKER_URL = "tcp://192.168.1.3:1883";
+    final String CLIENT_ID = "android";
     final int SERVER_PORT = 9000;
     final int CLIENT_PORT = 9999;
     final int BUFFER_SIZE = 65536;
@@ -55,8 +64,6 @@ public class HomeScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
@@ -65,7 +72,6 @@ public class HomeScreen extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.item_home);
         btn_generate = findViewById(R.id.btn_generate);
-
         singleton = Singleton.getInstance();
 
 
@@ -128,22 +134,21 @@ public class HomeScreen extends AppCompatActivity {
                                 outputStream.flush();
 //                                outputStream.close();
 //                                socket.close();
-
-
-                                // Receive response from the server
-                                BufferedReader bufferedReader = new BufferedReader(
-                                        new InputStreamReader(socket.getInputStream())
-                                );
-                                // make sure in the response from the server having "\n" character
-                                String response = bufferedReader.readLine();
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(HomeScreen.this, response, Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-//                                socket.close(); // Close the connection
+//
+//                                // Receive response from the server
+//                                BufferedReader bufferedReader = new BufferedReader(
+//                                        new InputStreamReader(socket.getInputStream())
+//                                );
+//
+//                                 // Make sure in the response from the server having "\n" character
+//                                String response = bufferedReader.readLine();
+//
+//                                runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Toast.makeText(HomeScreen.this, GeneratedURL, Toast.LENGTH_SHORT).show();}
+//                                });
+////                                socket.close(); // Close the connection
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

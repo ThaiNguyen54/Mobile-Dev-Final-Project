@@ -11,25 +11,11 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 1397946168
-  },
-  {
-    "level_": 3,
-    "message_": "expected buildFiles file \u0027D:\\Study\\Cirriculums\\Mobile Developement\\TT\\Thesis class\\Final Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt\u0027 to exist",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\\android_gradle_build.json",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 1409,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": 1017504695
+    "memoizedHashCode": 913144922
   },
   {
     "level_": 0,
-    "message_": "rebuilding JSON D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\\android_gradle_build.json due to:",
+    "message_": "JSON \u0027D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\\android_gradle_build.json\u0027 was up-to-date",
     "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
     "tag_": "debug|x86",
     "diagnosticCode_": 0,
@@ -39,147 +25,7 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 62735737
-  },
-  {
-    "level_": 0,
-    "message_": "- a hard configure file changed, will remove stale configuration folder",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": 382460294
-  },
-  {
-    "level_": 0,
-    "message_": "  - D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\\metadata_generation_command.txt (LAST_MODIFIED_CHANGED)",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": -1369688130
-  },
-  {
-    "level_": 0,
-    "message_": "removing stale contents from \u0027D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\u0027",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": -515631405
-  },
-  {
-    "level_": 0,
-    "message_": "created folder \u0027D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\u0027",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": -255614905
-  },
-  {
-    "level_": 0,
-    "message_": "executing cmake @echo off\n\"C:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\cmake.exe\" ^\n  \"-HD:\\\\Study\\\\Cirriculums\\\\Mobile-Developement\\\\TT\\\\Thesis-class\\\\Final-Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\libcxx_helper\" ^\n  \"-DCMAKE_SYSTEM_NAME\u003dAndroid\" ^\n  \"-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\" ^\n  \"-DCMAKE_SYSTEM_VERSION\u003d21\" ^\n  \"-DANDROID_PLATFORM\u003dandroid-21\" ^\n  \"-DANDROID_ABI\u003dx86\" ^\n  \"-DCMAKE_ANDROID_ARCH_ABI\u003dx86\" ^\n  \"-DANDROID_NDK\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\" ^\n  \"-DCMAKE_ANDROID_NDK\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\" ^\n  \"-DCMAKE_TOOLCHAIN_FILE\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\\\\build\\\\cmake\\\\android.toolchain.cmake\" ^\n  \"-DCMAKE_MAKE_PROGRAM\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\ninja.exe\" ^\n  \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\\\Study\\\\Cirriculums\\\\Mobile-Developement\\\\TT\\\\Thesis-class\\\\Final-Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3o6y1h26\\\\obj\\\\x86\" ^\n  \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\\\Study\\\\Cirriculums\\\\Mobile-Developement\\\\TT\\\\Thesis-class\\\\Final-Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3o6y1h26\\\\obj\\\\x86\" ^\n  \"-DCMAKE_BUILD_TYPE\u003dDebug\" ^\n  \"-BD:\\\\Study\\\\Cirriculums\\\\Mobile-Developement\\\\TT\\\\Thesis-class\\\\Final-Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\.cxx\\\\Debug\\\\3o6y1h26\\\\x86\" ^\n  -GNinja ^\n  \"-DANDROID_STL\u003dc++_shared\"\n",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": 727423062
-  },
-  {
-    "level_": 0,
-    "message_": "@echo off\n\"C:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\cmake.exe\" ^\n  \"-HD:\\\\Study\\\\Cirriculums\\\\Mobile-Developement\\\\TT\\\\Thesis-class\\\\Final-Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\libcxx_helper\" ^\n  \"-DCMAKE_SYSTEM_NAME\u003dAndroid\" ^\n  \"-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\" ^\n  \"-DCMAKE_SYSTEM_VERSION\u003d21\" ^\n  \"-DANDROID_PLATFORM\u003dandroid-21\" ^\n  \"-DANDROID_ABI\u003dx86\" ^\n  \"-DCMAKE_ANDROID_ARCH_ABI\u003dx86\" ^\n  \"-DANDROID_NDK\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\" ^\n  \"-DCMAKE_ANDROID_NDK\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\" ^\n  \"-DCMAKE_TOOLCHAIN_FILE\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\23.1.7779620\\\\build\\\\cmake\\\\android.toolchain.cmake\" ^\n  \"-DCMAKE_MAKE_PROGRAM\u003dC:\\\\Users\\\\Thai\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.22.1\\\\bin\\\\ninja.exe\" ^\n  \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dD:\\\\Study\\\\Cirriculums\\\\Mobile-Developement\\\\TT\\\\Thesis-class\\\\Final-Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3o6y1h26\\\\obj\\\\x86\" ^\n  \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dD:\\\\Study\\\\Cirriculums\\\\Mobile-Developement\\\\TT\\\\Thesis-class\\\\Final-Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\3o6y1h26\\\\obj\\\\x86\" ^\n  \"-DCMAKE_BUILD_TYPE\u003dDebug\" ^\n  \"-BD:\\\\Study\\\\Cirriculums\\\\Mobile-Developement\\\\TT\\\\Thesis-class\\\\Final-Project\\\\Mobile-Dev-Final-Project\\\\TryYourHair\\\\OpenCV\\\\.cxx\\\\Debug\\\\3o6y1h26\\\\x86\" ^\n  -GNinja ^\n  \"-DANDROID_STL\u003dc++_shared\"\n",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": 505494647
-  },
-  {
-    "level_": 0,
-    "message_": "Exiting generation of D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\\compile_commands.json.bin normally",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": 2138883837
-  },
-  {
-    "level_": 0,
-    "message_": "done executing cmake",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": -748237751
-  },
-  {
-    "level_": 0,
-    "message_": "deleted unexpected build output D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\build\\intermediates\\cxx\\Debug\\3o6y1h26\\obj\\x86\\libc++_shared.so in incremental regenerate",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": -900316072
-  },
-  {
-    "level_": 0,
-    "message_": "hard linked D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\Debug\\3o6y1h26\\x86\\compile_commands.json to D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\.cxx\\tools\\debug\\x86\\compile_commands.json",
-    "file_": "D:\\Study\\Cirriculums\\Mobile-Developement\\TT\\Thesis-class\\Final-Project\\Mobile-Dev-Final-Project\\TryYourHair\\OpenCV\\libcxx_helper\\CMakeLists.txt",
-    "tag_": "debug|x86",
-    "diagnosticCode_": 0,
-    "memoizedIsInitialized": 1,
-    "unknownFields": {
-      "fields": {},
-      "fieldsDescending": {}
-    },
-    "memoizedSize": -1,
-    "memoizedHashCode": 1108868004
+    "memoizedHashCode": 12882930
   },
   {
     "level_": 0,
@@ -193,6 +39,6 @@
       "fieldsDescending": {}
     },
     "memoizedSize": -1,
-    "memoizedHashCode": 1189835333
+    "memoizedHashCode": 705034087
   }
 ]
