@@ -25,7 +25,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         // Check if message contains data payload
         if (message.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + message.getData().get("ImageURL"));
+            Log.d(TAG, "Message data payload: " + message.getData().get("GeneratedImageURL"));
         }
 
 

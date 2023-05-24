@@ -87,4 +87,5 @@ public class Singleton {
     public String getRegistrationToken() {
         return RegistrationToken;
     }
+
 }

@@ -63,7 +63,6 @@ public class MQTTHandler {
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
                     Singleton singleton = Singleton.getInstance();
-                    singleton.setGeneratedURL(new String(message.getPayload()));
                 }
 
                 @Override
