@@ -7,7 +7,7 @@
     tools:context=".GeneratedHair">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constrait_layout_loading"
+        android:id="@+id/constraint_layout_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,14 +29,27 @@
             app:lottie_rawRes="@raw/scan_face" />
 
         <TextView
+            android:id="@+id/txt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your hair is in generation process "
+            android:lines="2"
+            app:layout_constraintBottom_toTopOf="@id/txt_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lottie_loading_animation"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/txt_2"
             android:layout_width="219dp"
             android:layout_height="wrap_content"
-            android:text="Your hair is in generation process It will take a little bit of time"
+            android:text="It will take a little bit of time"
             android:lines="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lottie_loading_animation"
+            app:layout_constraintTop_toTopOf="@id/txt_1"
             android:gravity="center"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

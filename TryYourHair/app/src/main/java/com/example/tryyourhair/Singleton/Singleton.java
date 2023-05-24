@@ -10,11 +10,13 @@ public class Singleton {
     private byte[] ConfirmedFaceImage;
     private String GeneratedURL;
     private String RegistrationToken;
+    private Boolean isReceivedGeneratedHair;
 
 
     private Singleton() {
         isChoseHair = false;
         isConfirmedFace = false;
+        isReceivedGeneratedHair = false;
     }
     public static Singleton getInstance() {
         if (uniqueInstance == null) {
@@ -88,4 +90,11 @@ public class Singleton {
         return RegistrationToken;
     }
 
+    public void setReceivedGeneratedHair(Boolean receivedGeneratedHair) {
+        isReceivedGeneratedHair = receivedGeneratedHair;
+    }
+
+    public Boolean getReceivedGeneratedHair() {
+        return isReceivedGeneratedHair;
+    }
 }

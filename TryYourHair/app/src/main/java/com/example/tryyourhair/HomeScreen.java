@@ -140,6 +140,7 @@ public class HomeScreen extends AppCompatActivity {
                         }
                     });
                     SendGenerationData.start();
+                    OpenGeneratedHair();
                 }
             }
         });
@@ -191,5 +192,10 @@ public class HomeScreen extends AppCompatActivity {
     public void OpenListHairActivity() {
         Intent ListHairIntent = new Intent(this, HairStyleRecyclerViewActivity.class);
         startActivity(ListHairIntent);
+    }
+
+    public void OpenGeneratedHair() {
+        Intent GeneratedHairIntent = new Intent(this, GeneratedHair.class);
+        startActivity(GeneratedHairIntent);
     }
 }
