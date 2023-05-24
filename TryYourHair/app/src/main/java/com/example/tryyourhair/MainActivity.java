@@ -22,28 +22,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        edt_token = findViewById(R.id.edt_token);
-        String TAG = "TOKEN";
-        singleton = Singleton.getInstance();
-
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
-
-                        // Get new FCM registration token
-                        String token = task.getResult();
-                        singleton.setRegistrationToken(token);
-
-                        edt_token.setText(token);
-                    }
-                });
-
     }
 
     public void OpenCameraActivity(View view) {

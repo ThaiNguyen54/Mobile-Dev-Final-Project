@@ -74,6 +74,23 @@ public class HomeScreen extends AppCompatActivity {
         btn_generate = findViewById(R.id.btn_generate);
         singleton = Singleton.getInstance();
 
+        String TAG = "TOKEN";
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        singleton.setRegistrationToken(token);
+                    }
+                });
+
+
 
         btn_generate.setOnClickListener(new View.OnClickListener() {
             @Override
