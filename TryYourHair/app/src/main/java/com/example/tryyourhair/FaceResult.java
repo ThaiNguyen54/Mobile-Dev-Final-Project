@@ -31,6 +31,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 
 import com.example.tryyourhair.ErrorDialog.NoFaceDialog;
@@ -132,7 +133,7 @@ public class FaceResult extends AppCompatActivity {
                                         rect.set(rect.left * SCALING_FACTOR,
                                                 rect.top * (SCALING_FACTOR - 4),
                                                 rect.right * SCALING_FACTOR,
-                                                (rect.bottom * SCALING_FACTOR) + 90);
+                                                (rect.bottom * SCALING_FACTOR) + 50);
                                         eulerX = face.getHeadEulerAngleX();
                                         eulerY = face.getHeadEulerAngleY();
                                         eulerZ = face.getHeadEulerAngleZ();

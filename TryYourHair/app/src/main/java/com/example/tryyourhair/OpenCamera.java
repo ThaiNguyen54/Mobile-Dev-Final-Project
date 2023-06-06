@@ -9,6 +9,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.media.Image;
@@ -16,9 +17,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -46,6 +49,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
@@ -59,11 +64,13 @@ public class OpenCamera extends CameraActivity {
     CameraBridgeViewBase cameraBridgeViewBase;
     ImageView btn_taking_picture;
     ImageView btn_cancel_take_image;
+    View face_roi;
     int take_image = 0;
     FaceDetector faceDetector;
     private static final int SCALING_FACTOR = 10;
 
     ImageView img_processing_face;
+    boolean isTakeImage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +79,7 @@ public class OpenCamera extends CameraActivity {
 
         getPermission();
 
+//        face_roi = findViewById(R.id.face_roi);
         singleton = Singleton.getInstance();
         cameraBridgeViewBase = findViewById(R.id.camera_view);
         btn_taking_picture = findViewById(R.id.btn_take_picture);
@@ -104,121 +112,144 @@ public class OpenCamera extends CameraActivity {
                 take_image = TakePicture(take_image, inputFrame.rgba());
 
                 // Create a thread for processing image real-time
-//                Thread FaceDetectionRealTime = new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
+                Thread FaceDetectionRealTime = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        // Create a new mat
+                        Mat processingMat = new Mat();
+
+                        // Rotate the original mat 90 degrees counter-clockwise
+                        Core.rotate(inputFrame.rgba(), processingMat, 2);
+
+                        // Covert the rotated mat into Bitmap
+                        Bitmap bitmap_processing = Bitmap.createBitmap(processingMat.cols(),
+                                processingMat.rows(),
+                                Bitmap.Config.ARGB_8888);
+                        Utils.matToBitmap(processingMat, bitmap_processing);
+
+                        // Create a bitmap to store processed image
+                        Bitmap processed_bitmap = bitmap_processing.copy(
+                                Bitmap.Config.ARGB_8888,
+                                true);
+
+                        // Create a smaller bitmap for faster processing
+                        Bitmap smaller_processingBitmap = Bitmap.createScaledBitmap(
+                                bitmap_processing,
+                                bitmap_processing.getWidth() / SCALING_FACTOR,
+                                bitmap_processing.getHeight() / SCALING_FACTOR,
+                                false);
+
+
+
+                        // Create an InputImage object for face detection process
+                        InputImage inputImage = InputImage.fromBitmap(smaller_processingBitmap, 0);
+
+                        // Start the detection process
+                        faceDetector.process(inputImage)
+                                .addOnSuccessListener(new OnSuccessListener<List<Face>>() {
+                                    @Override
+                                    public void onSuccess(List<Face> faces) {
+                                        int top = 100;
+                                        int bottom = 750;
+                                        int left = 90;
+                                        int right = 600;
+
+
+                                        Rect roi_rect = new Rect(left, top, right, bottom);
+                                        Rect rect = null;
+                                        if (faces.size() == 0) {
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(OpenCamera.this, "Oops! No face detected", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        }
+                                        else if (faces.size() > 1) {
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(OpenCamera.this, "More than one face detected", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        }
+                                        else {
+                                            for(Face face : faces) {
+                                                rect = face.getBoundingBox();
+                                                rect.set(rect.left * SCALING_FACTOR,
+                                                        rect.top * (SCALING_FACTOR - 4),
+                                                        rect.right * SCALING_FACTOR,
+                                                        (rect.bottom * SCALING_FACTOR) + 50);
+                                            }
+
+                                            // Draw bounding box for detected face
+                                            Mat mat_processing_face = new Mat();
+                                            Utils.bitmapToMat(bitmap_processing, mat_processing_face);
+                                            Imgproc.rectangle(
+                                                    mat_processing_face,
+                                                    new Point((float) rect.left, (float) rect.bottom),
+                                                    new Point((float) rect.right, (float) rect.top),
+                                                    new Scalar(255, 0, 0),
+                                                    5);
 //
-//                        // Create a new mat
-//                        Mat processingMat = new Mat();
-//
-//                        // Rotate the original mat 90 degrees counter-clockwise
-//                        Core.rotate(inputFrame.rgba(), processingMat, 2);
-//
-//                        // Covert the rotated mat into Bitmap
-//                        Bitmap bitmap_processing = Bitmap.createBitmap(processingMat.cols(),
-//                                processingMat.rows(),
-//                                Bitmap.Config.ARGB_8888);
-//                        Utils.matToBitmap(processingMat, bitmap_processing);
-//
-//                        // Create a bitmap to store processed image
-//                        Bitmap processed_bitmap = bitmap_processing.copy(
-//                                Bitmap.Config.ARGB_8888,
-//                                true);
-//
-//                        // Init a FaceDetector Object
-//                        FaceDetectorOptions realTimeFdo = new FaceDetectorOptions.Builder()
-//                                .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
-//                                .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
-//                                .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
-//                                .build();
-//
-//                        faceDetector = FaceDetection.getClient(realTimeFdo);
-//
-//                        // Create a smaller bitmap for faster processing
-//                        Bitmap smaller_processingBitmap = Bitmap.createScaledBitmap(
-//                                bitmap_processing,
-//                                bitmap_processing.getWidth() / SCALING_FACTOR,
-//                                bitmap_processing.getHeight() / SCALING_FACTOR,
-//                                false);
-//
-//                        // Create an InputImage object fro face detection process
-//                        InputImage inputImage = InputImage.fromBitmap(smaller_processingBitmap, 0);
-//
-//
-//                        // Start the detection process
-//                        faceDetector.process(inputImage)
-//                                .addOnSuccessListener(new OnSuccessListener<List<Face>>() {
-//                                    @Override
-//                                    public void onSuccess(List<Face> faces) {
-//                                        Rect rect = null;
-//                                        if (faces.size() == 0) {
-//                                            runOnUiThread(new Runnable() {
-//                                                @Override
-//                                                public void run() {
-//                                                    Toast.makeText(OpenCamera.this, "Oops! No face detected", Toast.LENGTH_SHORT).show();
-//
-////                                                    img_processing_face.setImageBitmap(bitmap_processing);
-//                                                }
-//                                            });
-//                                        }
-//                                        else if (faces.size() > 1) {
-//                                            runOnUiThread(new Runnable() {
-//                                                @Override
-//                                                public void run() {
-//                                                    Toast.makeText(OpenCamera.this, "More than one face detected", Toast.LENGTH_SHORT).show();
-//
-////                                                    img_processing_face.setImageBitmap(bitmap_processing);
-//                                                }
-//                                            });
-//                                        }
-//                                        else {
-//                                            for(Face face:faces) {
-//                                                rect = face.getBoundingBox();
-//                                                rect.set(rect.left * SCALING_FACTOR,
-//                                                        rect.top * (SCALING_FACTOR - 1),
-//                                                        rect.right * SCALING_FACTOR,
-//                                                        (rect.bottom * SCALING_FACTOR) + 90);
-//                                            }
-//
-//                                            // Draw bounding box for detected face
-//                                            Mat mat_processing_face = new Mat();
-//                                            Utils.bitmapToMat(bitmap_processing, mat_processing_face);
-//                                            Imgproc.rectangle(
-//                                                    mat_processing_face,
-//                                                    new Point((float) rect.left, (float) rect.bottom),
-//                                                    new Point((float) rect.right, (float) rect.top),
-//                                                    new Scalar(255, 0, 0),
-//                                                    5);
-//
-//
-//                                            Utils.matToBitmap(mat_processing_face, processed_bitmap);
-//
-//                                            runOnUiThread(new Runnable() {
-//                                                @Override
-//                                                public void run() {
-//                                                    img_processing_face.setImageBitmap(processed_bitmap);
-//                                                }
-//                                            });
-//                                        }
-//                                    }
-//                                })
-//                                .addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        Toast.makeText(OpenCamera.this, "Detection failed due to " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                                    }
-//                                });
-////                        runOnUiThread(new Runnable() {
-////                            @Override
-////                            public void run() {
-////                                img_processing_face.setImageBitmap(processed_bitmap);
-////                            }
-////                        });
-//
-//                    }
-//                });
-//                FaceDetectionRealTime.start();
+                                            // Define boundaries of a roi
+                                            Imgproc.rectangle(
+                                                    mat_processing_face,
+                                                    new Point((float) roi_rect.left, (float) roi_rect.bottom),
+                                                    new Point((float) roi_rect.right, (float) roi_rect.top),
+                                                    new Scalar(255, 0, 0),
+                                                    5);
+
+                                            String msg;
+                                            if ((rect.top < roi_rect.top)
+                                                    || (rect.bottom > roi_rect.bottom)
+                                                    || (rect.right > roi_rect.right)
+                                                    || (rect.left < roi_rect.left)) {
+                                                msg = "Please put your face into the frame";
+                                                Log.d("TEST", msg);
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(OpenCamera.this, msg, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            }
+                                            if ((rect.top >= roi_rect.top) && (rect.bottom <= roi_rect.bottom) && (rect.left >= roi_rect.left) && (rect.right <= roi_rect.right) && (!isTakeImage)) {
+                                                isTakeImage = true;
+                                                new Handler().postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        btn_taking_picture.performClick();
+                                                        isTakeImage = false;
+                                                    }
+                                                }, 3000);
+
+                                            }
+                                            Utils.matToBitmap(mat_processing_face, processed_bitmap);
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    try{
+                                                        img_processing_face.setImageBitmap(processed_bitmap);
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(OpenCamera.this, "Detection failed due to " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                    }
+                });
+                FaceDetectionRealTime.start();
 
                 return inputFrame.rgba();
             }
@@ -397,4 +428,5 @@ public class OpenCamera extends CameraActivity {
         super.onBackPressed();
         CancelTakeImage();
     }
+
 }
