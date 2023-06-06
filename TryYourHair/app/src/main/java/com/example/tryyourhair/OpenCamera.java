@@ -150,7 +150,7 @@ public class OpenCamera extends CameraActivity {
                                 .addOnSuccessListener(new OnSuccessListener<List<Face>>() {
                                     @Override
                                     public void onSuccess(List<Face> faces) {
-                                        int top = 100;
+                                        int top = 150;
                                         int bottom = 750;
                                         int left = 90;
                                         int right = 600;
@@ -206,6 +206,7 @@ public class OpenCamera extends CameraActivity {
                                                     || (rect.bottom > roi_rect.bottom)
                                                     || (rect.right > roi_rect.right)
                                                     || (rect.left < roi_rect.left)) {
+                                                isTakeImage = false;
                                                 msg = "Please put your face into the frame";
                                                 Log.d("TEST", msg);
                                                 runOnUiThread(new Runnable() {
@@ -220,8 +221,10 @@ public class OpenCamera extends CameraActivity {
                                                 new Handler().postDelayed(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        btn_taking_picture.performClick();
-                                                        isTakeImage = false;
+                                                        if (isTakeImage) {
+                                                            btn_taking_picture.performClick();
+                                                            isTakeImage = false;
+                                                        }
                                                     }
                                                 }, 3000);
 
