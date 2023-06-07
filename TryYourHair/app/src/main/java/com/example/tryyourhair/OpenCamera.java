@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.animation.Animator;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tryyourhair.Singleton.Singleton;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -68,9 +70,10 @@ public class OpenCamera extends CameraActivity {
     int take_image = 0;
     FaceDetector faceDetector;
     private static final int SCALING_FACTOR = 10;
-
     ImageView img_processing_face;
     boolean isTakeImage = false;
+    LottieAnimationView animationViewCountDown;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,12 +83,14 @@ public class OpenCamera extends CameraActivity {
         getPermission();
 
 //        face_roi = findViewById(R.id.face_roi);
+//        img_processing_face = findViewById(R.id.img_processing_face);
+
+        animationViewCountDown = findViewById(R.id.animation_countdown);
         singleton = Singleton.getInstance();
         cameraBridgeViewBase = findViewById(R.id.camera_view);
         btn_taking_picture = findViewById(R.id.btn_take_picture);
         btn_cancel_take_image = findViewById(R.id.btn_cancel);
         cameraBridgeViewBase.setCameraIndex(1); // Use front camera
-        img_processing_face = findViewById(R.id.img_processing_face);
 
         // Init FaceDetector Object
         FaceDetectorOptions realTimeFdo = new FaceDetectorOptions.Builder()
@@ -208,7 +213,8 @@ public class OpenCamera extends CameraActivity {
                                                     || (rect.left < roi_rect.left)) {
                                                 isTakeImage = false;
                                                 msg = "Please put your face into the frame";
-                                                Log.d("TEST", msg);
+                                                animationViewCountDown.cancelAnimation();
+                                                animationViewCountDown.setProgress(0.0f);
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
@@ -218,28 +224,43 @@ public class OpenCamera extends CameraActivity {
                                             }
                                             if ((rect.top >= roi_rect.top) && (rect.bottom <= roi_rect.bottom) && (rect.left >= roi_rect.left) && (rect.right <= roi_rect.right) && (!isTakeImage)) {
                                                 isTakeImage = true;
-                                                new Handler().postDelayed(new Runnable() {
+                                                animationViewCountDown.playAnimation();
+                                                animationViewCountDown.addAnimatorListener(new Animator.AnimatorListener() {
                                                     @Override
-                                                    public void run() {
+                                                    public void onAnimationStart(@NonNull Animator animation) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onAnimationEnd(@NonNull Animator animation) {
                                                         if (isTakeImage) {
                                                             btn_taking_picture.performClick();
                                                             isTakeImage = false;
                                                         }
                                                     }
-                                                }, 3000);
 
-                                            }
-                                            Utils.matToBitmap(mat_processing_face, processed_bitmap);
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    try{
-                                                        img_processing_face.setImageBitmap(processed_bitmap);
-                                                    } catch (Exception e) {
-                                                        e.printStackTrace();
+                                                    @Override
+                                                    public void onAnimationCancel(@NonNull Animator animation) {
+
                                                     }
-                                                }
-                                            });
+
+                                                    @Override
+                                                    public void onAnimationRepeat(@NonNull Animator animation) {
+
+                                                    }
+                                                });
+                                            }
+//                                            Utils.matToBitmap(mat_processing_face, processed_bitmap);
+//                                            runOnUiThread(new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    try{
+//                                                        img_processing_face.setImageBitmap(processed_bitmap);
+//                                                    } catch (Exception e) {
+//                                                        e.printStackTrace();
+//                                                    }
+//                                                }
+//                                            });
                                         }
                                     }
                                 })

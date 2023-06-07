@@ -84,7 +84,7 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity implements 
 
                             rvHairStyle.setAdapter(hairStyleAdapter);
 
-//                    // Recycler view scroll vertical
+                    // Recycler view scroll vertical
 //                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(HairStyleRecyclerViewActivity.this, LinearLayoutManager.VERTICAL, false);
 
                             // Use GridLayout
