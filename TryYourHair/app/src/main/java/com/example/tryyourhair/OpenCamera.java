@@ -60,6 +60,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 public class OpenCamera extends CameraActivity {
     Singleton singleton;
@@ -164,20 +165,20 @@ public class OpenCamera extends CameraActivity {
                                         Rect roi_rect = new Rect(left, top, right, bottom);
                                         Rect rect = null;
                                         if (faces.size() == 0) {
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Toast.makeText(OpenCamera.this, "Oops! No face detected", Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
+//                                            runOnUiThread(new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    Toast.makeText(OpenCamera.this, "Oops! No face detected", Toast.LENGTH_SHORT).show();
+//                                                }
+//                                            });
                                         }
                                         else if (faces.size() > 1) {
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Toast.makeText(OpenCamera.this, "More than one face detected", Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
+//                                            runOnUiThread(new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    Toast.makeText(OpenCamera.this, "More than one face detected", Toast.LENGTH_SHORT).show();
+//                                                }
+//                                            });
                                         }
                                         else {
                                             for(Face face : faces) {
@@ -215,12 +216,12 @@ public class OpenCamera extends CameraActivity {
                                                 msg = "Please put your face into the frame";
                                                 animationViewCountDown.cancelAnimation();
                                                 animationViewCountDown.setProgress(0.0f);
-                                                runOnUiThread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        Toast.makeText(OpenCamera.this, msg, Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
+//                                                runOnUiThread(new Runnable() {
+//                                                    @Override
+//                                                    public void run() {
+//                                                        Toast.makeText(OpenCamera.this, msg, Toast.LENGTH_SHORT).show();
+//                                                    }
+//                                                });
                                             }
                                             if ((rect.top >= roi_rect.top) && (rect.bottom <= roi_rect.bottom) && (rect.left >= roi_rect.left) && (rect.right <= roi_rect.right) && (!isTakeImage)) {
                                                 isTakeImage = true;
@@ -237,6 +238,7 @@ public class OpenCamera extends CameraActivity {
                                                             btn_taking_picture.performClick();
                                                             isTakeImage = false;
                                                         }
+                                                        animationViewCountDown.pauseAnimation();
                                                     }
 
                                                     @Override
@@ -249,6 +251,14 @@ public class OpenCamera extends CameraActivity {
 
                                                     }
                                                 });
+
+//                                                runOnUiThread(new Runnable() {
+//                                                    @Override
+//                                                    public void run() {
+//                                                        Toast.makeText(OpenCamera.this, "Keep your face still", Toast.LENGTH_SHORT).show();
+//                                                    }
+//                                                });
+
                                             }
 //                                            Utils.matToBitmap(mat_processing_face, processed_bitmap);
 //                                            runOnUiThread(new Runnable() {
@@ -339,8 +349,10 @@ public class OpenCamera extends CameraActivity {
 
 //           String fileNameForSave = "/TYH-YourPhoto" + currentDateTime + ".jpg";
 //           String fileNameForSave = "/TYH-YourPhoto/" + "THY-" + Calendar.getInstance().getTime();
-           String fileNameForSave = "THY_" + Calendar.getInstance().getTime();
-           singleton.setConfirmedFaceName(fileNameForSave);
+           String fileNameForSave = "TYH_" + Calendar.getInstance().getTime();
+           UUID uuid = UUID.randomUUID();
+           String uniqueFileName = uuid.toString();
+           singleton.setConfirmedFaceName(uniqueFileName);
            Log.d("FILE", fileNameForSave);
 
            // Write the mat to the storage

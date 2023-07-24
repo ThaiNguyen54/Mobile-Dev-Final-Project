@@ -24,6 +24,8 @@ import com.bumptech.glide.Glide;
 import com.cloudinary.android.MediaManager;
 import com.example.tryyourhair.MQTT.MQTTHandler;
 import com.example.tryyourhair.Models.GenerationData;
+import com.example.tryyourhair.RetrofitInstance.RetrofitClient;
+import com.example.tryyourhair.RetrofitInterface.Methods;
 import com.example.tryyourhair.Singleton.Singleton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,13 +50,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class HomeScreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     ImageView chose_hairstyle_img;
     ImageView confirmed_face_img;
     Singleton singleton;
     Button btn_generate;
-    final String SERVER_IP = "192.168.1.10";
+    final String SERVER_IP = "192.168.1.5";
     final String BROKER_URL = "tcp://192.168.1.3:1883";
     final String CLIENT_ID = "android";
     final int SERVER_PORT = 9000;
@@ -118,11 +124,11 @@ public class HomeScreen extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
-                                // Initiate a socket instance
-                                Socket socket = new Socket(SERVER_IP, SERVER_PORT);
-
-
-                                OutputStream outputStream = socket.getOutputStream();
+//                                // Initiate a socket instance
+//                                Socket socket = new Socket(SERVER_IP, SERVER_PORT);
+//
+//
+//                                OutputStream outputStream = socket.getOutputStream();
 
 
                                 // Encode image for sending to server
@@ -145,11 +151,26 @@ public class HomeScreen extends AppCompatActivity {
                                         singleton.getRegistrationToken());
 
                                 String GenerationJSON = gson.toJson(generationData);
-//                                Establish a connection to the server
-                                outputStream.write(GenerationJSON.getBytes());
-                                outputStream.flush();
-                                outputStream.close();
-                                socket.close();
+
+                                Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+                                Call<GenerationData> call = methods.postGenerationData(generationData);
+                                call.enqueue(new Callback<GenerationData>() {
+                                    @Override
+                                    public void onResponse(Call<GenerationData> call, Response<GenerationData> response) {
+                                        GenerationData responseFromAPI = response.body();
+                                        Toast.makeText(HomeScreen.this,"generated hair: " + response.code(), Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<GenerationData> call, Throwable throwable) {
+
+                                    }
+                                });
+//                                // Establish a connection to the server
+//                                outputStream.write(GenerationJSON.getBytes());
+//                                outputStream.flush();
+//                                outputStream.close();
+//                                socket.close();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
