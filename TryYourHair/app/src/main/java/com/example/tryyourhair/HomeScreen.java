@@ -75,8 +75,8 @@ public class HomeScreen extends AppCompatActivity {
 
         chose_hairstyle_img = findViewById(R.id.img_chose_hairstyle);
         confirmed_face_img = findViewById(R.id.img_confirmed_face);
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.item_home);
+//        bottomNavigationView = findViewById(R.id.bottom_navigation);
+//        bottomNavigationView.setSelectedItemId(R.id.item_home);
         btn_generate = findViewById(R.id.btn_generate);
         singleton = Singleton.getInstance();
 
@@ -97,6 +97,19 @@ public class HomeScreen extends AppCompatActivity {
                 });
 
 
+        confirmed_face_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenCameraActivity();
+            }
+        });
+
+        chose_hairstyle_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenListHairActivity();
+            }
+        });
 
         btn_generate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,21 +195,21 @@ public class HomeScreen extends AppCompatActivity {
                 }
             }
         });
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.item_camera:
-                        OpenCameraActivity();
-                        break;
-
-                    case R.id.item_hairstyle:
-                        OpenListHairActivity();
-                        break;
-                }
-                return true;
-            }
-        });
+//        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.item_camera:
+//                        OpenCameraActivity();
+//                        break;
+//
+//                    case R.id.item_hairstyle:
+//                        OpenListHairActivity();
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
 
         if(singleton.getChoseHair() == false) {
             chose_hairstyle_img.setImageResource(R.drawable.img_ex2);

@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static Retrofit retrofit;
 
-    private static String BASE_URL = "http://192.168.1.5:7000/";
+    private static String BASE_URL = "http://192.168.1.9:7000/";
 
 //    private static String BASE_URL = "https://mobile-dev-final-project-api.vercel.app/";
     public static Retrofit getRetrofitInstance() {
