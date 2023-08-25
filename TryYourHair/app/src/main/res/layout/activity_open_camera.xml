@@ -5,18 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OpenCamera"
-    android:background="@color/white">
+    android:background="@color/black">
+
 
     <org.opencv.android.JavaCameraView
         android:id="@+id/camera_view"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <View
+        android:id="@+id/view"
         android:layout_width="223dp"
         android:layout_height="312dp"
         android:background="@drawable/face_shape"
@@ -61,28 +63,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/img_processing_face"-->
-<!--        android:layout_width="149dp"-->
-<!--        android:layout_height="169dp"-->
-<!--        android:layout_below="@+id/camera_view"-->
-<!--        android:visibility="visible"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/btn_take_picture"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/camera_view"-->
-<!--        app:layout_constraintVertical_bias="0.513" />-->
+    <ImageView
+        android:id="@+id/img_processing_face"
+        android:layout_width="184dp"
+        android:layout_height="260dp"
+        android:layout_below="@+id/camera_view"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintStart_toEndOf="@+id/animation_countdown"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.921" />
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_countdown"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="76dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/camera_view"
-        app:lottie_rawRes="@raw/countdown_3" />
+        app:lottie_rawRes="@raw/countdown_3"
+        app:lottie_colorFilter="@color/white"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

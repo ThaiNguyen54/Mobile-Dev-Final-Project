@@ -20,8 +20,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -84,14 +87,21 @@ public class OpenCamera extends CameraActivity {
         getPermission();
 
 //        face_roi = findViewById(R.id.face_roi);
-//        img_processing_face = findViewById(R.id.img_processing_face);
+        img_processing_face = findViewById(R.id.img_processing_face);
 
+
+
+
+        // Set camera fullscreen
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         animationViewCountDown = findViewById(R.id.animation_countdown);
         singleton = Singleton.getInstance();
         cameraBridgeViewBase = findViewById(R.id.camera_view);
         btn_taking_picture = findViewById(R.id.btn_take_picture);
         btn_cancel_take_image = findViewById(R.id.btn_cancel);
         cameraBridgeViewBase.setCameraIndex(1); // Use front camera
+
+
 
         // Init FaceDetector Object
         FaceDetectorOptions realTimeFdo = new FaceDetectorOptions.Builder()
@@ -122,6 +132,12 @@ public class OpenCamera extends CameraActivity {
                     @Override
                     public void run() {
 
+//                        // get location of the face_roi
+//                        int top_roi = face_roi.getTop();
+//                        int bottom_roi = face_roi.getBottom();
+//                        int right_roi = face_roi.getRight();
+//                        int left_roi = face_roi.getLeft();
+
                         // Create a new mat
                         Mat processingMat = new Mat();
 
@@ -146,6 +162,20 @@ public class OpenCamera extends CameraActivity {
                                 bitmap_processing.getHeight() / SCALING_FACTOR,
                                 false);
 
+//                        // Get size of cameraBridgeViewBase
+//                        int cameraH = cameraBridgeViewBase.getHeight();
+//                        int cameraW = cameraBridgeViewBase.getWidth();
+//                        int camera_size = cameraH * cameraW;
+//
+//                        // Get size of processing_face_view
+//                        int processing_face_H = img_processing_face.getHeight();
+//                        int processing_face_W = img_processing_face.getWidth();
+//                        int processing_face_size = processing_face_H * processing_face_W;
+//
+//                        // Calculate scale factor
+//                        int x_scale_factor = cameraW / processing_face_W;
+//                        int y_scale_factor = cameraW / processing_face_H;
+
 
 
                         // Create an InputImage object for face detection process
@@ -156,10 +186,21 @@ public class OpenCamera extends CameraActivity {
                                 .addOnSuccessListener(new OnSuccessListener<List<Face>>() {
                                     @Override
                                     public void onSuccess(List<Face> faces) {
-                                        int top = 150;
-                                        int bottom = 750;
-                                        int left = 90;
-                                        int right = 600;
+//                                        int top = top_roi / y_scale_factor;
+//                                        int bottom = bottom_roi / y_scale_factor;
+//                                        int left = left_roi / x_scale_factor;
+//                                        int right = right_roi / x_scale_factor;
+
+                                        int processing_face_H = img_processing_face.getHeight();
+                                        int processing_face_W = img_processing_face.getWidth();
+                                        int processing_face_size = processing_face_H * processing_face_W;
+
+                                        int top = processing_face_H - 650;
+                                        int bottom = processing_face_H - 10;
+                                        int left = processing_face_W - 400;
+                                        int right = processing_face_W + 100;
+
+
 
 
                                         Rect roi_rect = new Rect(left, top, right, bottom);
@@ -260,17 +301,17 @@ public class OpenCamera extends CameraActivity {
 //                                                });
 
                                             }
-//                                            Utils.matToBitmap(mat_processing_face, processed_bitmap);
-//                                            runOnUiThread(new Runnable() {
-//                                                @Override
-//                                                public void run() {
-//                                                    try{
-//                                                        img_processing_face.setImageBitmap(processed_bitmap);
-//                                                    } catch (Exception e) {
-//                                                        e.printStackTrace();
-//                                                    }
-//                                                }
-//                                            });
+                                            Utils.matToBitmap(mat_processing_face, processed_bitmap);
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    try{
+                                                        img_processing_face.setImageBitmap(processed_bitmap);
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            });
                                         }
                                     }
                                 })

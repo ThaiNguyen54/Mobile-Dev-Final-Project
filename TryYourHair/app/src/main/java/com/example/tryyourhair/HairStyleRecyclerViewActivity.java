@@ -1,5 +1,6 @@
 package com.example.tryyourhair;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,18 +59,18 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity implements 
                 rvHairStyle = (RecyclerView) findViewById(R.id.rv_hairstyle);
                 listHairStyle = new ArrayList<>();
 
-
                 // Call API get Hairstyle
                 Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
                 Call<HairstyleDataCallFromAPI> call = methods.getAllData();
                 call.enqueue(new Callback<HairstyleDataCallFromAPI>() {
                     @Override
-                    public void onResponse(Call<HairstyleDataCallFromAPI> call, Response<HairstyleDataCallFromAPI> response) {
+                    public void onResponse(@NonNull Call<HairstyleDataCallFromAPI> call, @NonNull Response<HairstyleDataCallFromAPI> response) {
+                        assert response.body() != null;
                         ArrayList<HairstyleDataCallFromAPI.data> Hairstyles = response.body().getHairstyles();
+                        Log.d("LENGTH", String.valueOf(Hairstyles.size()));
                         for (int i = 0; i < Hairstyles.size(); i++) {
                             Log.d("TEST",  Hairstyles.get(i).get_id());
                             Log.d("NAME", Hairstyles.get(i).getName());
-
 
                             listHairStyle.add(new HairStyle(
                                     Hairstyles.get(i).getName(),
@@ -94,7 +95,7 @@ public class HairStyleRecyclerViewActivity extends AppCompatActivity implements 
                     }
 
                     @Override
-                    public void onFailure(Call<HairstyleDataCallFromAPI> call, Throwable t) {
+                    public void onFailure(@NonNull Call<HairstyleDataCallFromAPI> call, @NonNull Throwable t) {
 
                     }
                 });
